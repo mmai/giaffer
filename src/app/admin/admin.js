@@ -52,7 +52,7 @@ angular.module('ngDevstack.admin', [
 
             $scope.addInterest = function(){
                 if ($scope.newinterest.name){
-                    var newinterest = $scope.interests.new({
+                    var newinterest = Interests.new({
                             name:$scope.newinterest.name,
                             searchString:'"' + $scope.newinterest.name + '"',
                         });

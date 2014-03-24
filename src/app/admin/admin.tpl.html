@@ -1,13 +1,16 @@
 <section class="admin">
     <div class="row-fluid">
         <h1>Manage your interests</h1>
-        <p>The search request should follow the same syntax as the selected search engine. For google : phrases in double quotes, pipe symbol (|) to separate alternative versions of a same search term.</p>
 
-        <form>
+    <p>
+    Establish here your list of interesting topics. For each topic, set its name and its associated search terms.
+    <br>No account creation is needeed, all data is saved in your browser and will be available the next time you visit this page. 
+    </p>
+        <form ng-submit="addInterest();">
             <div class="input-group">
                 <input type="text" class="form-control" ng-model="newinterest.name" placeholder="New interest">
                 <span class="input-group-btn">
-                    <input type="submit" class="btn btn-default" type="button" id="btnSaveNewInterest" ng-click="addInterest();">Add</input>
+                    <input type="submit" class="btn btn-default" type="button" id="btnSaveNewInterest">Add</input>
                 </span>
             </div><!-- /input-group -->
         </form>
@@ -15,7 +18,7 @@
             <tr ng-show="interests.length > 0">
                 <th style="width: 100px;"></th>
                 <th>Name</th>
-                <th>Search request</th>
+                <th>Search request *</th>
             </tr>
             <tr ng-repeat="interest in interests | orderBy:'name':false">
                 <form>
@@ -50,6 +53,8 @@
             </tr>
         </table>
 
+        <p> * The search request should follow the same syntax as the one used by the selected search engine.<br>
+        For google : phrases in double quotes, pipe symbol (|) to separate alternative versions of a same search term.</p>
 
     </div>
 </section>
