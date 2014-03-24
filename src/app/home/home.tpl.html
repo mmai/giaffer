@@ -1,0 +1,21 @@
+<section class="home">
+    <div class="jumbotron">
+        <h1>Giaffer</h1>
+        <p>What about searching for something related to 
+        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <i>{{theme.name}}</i> </span> ?
+        </p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{search.display}}
+            </div>
+        </div>
+        <p>
+        <a class="btn btn-default btn-lg" ng-click='newterms()'>
+            <span class="glyphicon glyphicon-refresh"></span> Boring, please pick others
+        </a> 
+        <a id='search' class="btn btn-primary btn-lg" role="button" href="{{search.url}}" target="_blank">
+                <span class="glyphicon glyphicon-search"></span> Fantastic ! Let's search that !
+            </a>
+        </p>
+    </div>
+</section>

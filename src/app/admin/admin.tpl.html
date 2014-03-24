@@ -1,0 +1,55 @@
+<section class="admin">
+    <div class="row-fluid">
+        <h1>Manage your interests</h1>
+        <p>The search request should follow the same syntax as the selected search engine. For google : phrases in double quotes, pipe symbol (|) to separate alternative versions of a same search term.</p>
+
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="newinterest.name" placeholder="New interest">
+                <span class="input-group-btn">
+                    <input type="submit" class="btn btn-default" type="button" id="btnSaveNewInterest" ng-click="addInterest();">Add</input>
+                </span>
+            </div><!-- /input-group -->
+        </form>
+        <table class="table table-striped table-bordered table-condensed table-hover">
+            <tr ng-show="interests.length > 0">
+                <th style="width: 100px;"></th>
+                <th>Name</th>
+                <th>Search request</th>
+            </tr>
+            <tr ng-repeat="interest in interests | orderBy:'name':false">
+                <form>
+                    <td>
+                        <div class="btn-toolbar" ng-show="interest.editMode == null || interest.editMode == false">
+                            <div class="btn-group">
+                                <i class="btn glyphicon glyphicon-edit" ng-click="toggleEditMode(interest)"></i>
+                                <i class="btn glyphicon glyphicon-trash" ng-really-message="'Really delete ?'" ng-really-click="deleteInterest(interest)"></i>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar" ng-show="interest.editMode == true">
+                            <div class="btn-group">
+                                <i class="btn glyphicon glyphicon-save" ng-click="updateInterest(interest)"></i>
+                                <i class="btn glyphicon glyphicon-remove" ng-click="cancelEditInterest(interest)"></i>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.name}}</span>
+
+                        <div class="input-group" ng-show="interest.editMode === true" >
+                            <input type="text" class="form-control" ng-model="interest.name">
+                        </div>
+                    </td>
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.searchString}}</span>
+                        <div class="input-group" ng-show="interest.editMode === true" >
+                            <input type="text" class="form-control" ng-model="interest.searchString">
+                        </div>
+                    </td>
+                </form>
+            </tr>
+        </table>
+
+
+    </div>
+</section>
