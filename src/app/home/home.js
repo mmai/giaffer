@@ -25,20 +25,15 @@ angular.module('ngDevstack.home', [
         '$florm',
         function($scope, $florm){
             var options = {
-                nbTerms:2,
-                searchEngine:"google.fr"
+                nbTerms:2
             };
 
             var Interests = $florm('interests');
-            var interests = Interests.all();
+            var Giaffer = new window.Giaffer(options, Interests.all());
 
-            var Giaffer = new window.Giaffer(options, interests);
-            var search = Giaffer.search();
-
-            //      chrome.tabs.create({'url': search.url});
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
             };
-            $scope.search = search;
+            $scope.newterms();
         }
     ]);

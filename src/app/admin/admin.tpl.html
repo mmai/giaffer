@@ -56,5 +56,15 @@
         <p> * The search request should follow the same syntax as the one used by the selected search engine.<br>
         For google : phrases in double quotes, pipe symbol (|) to separate alternative versions of a same search term.</p>
 
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="searchEngine"  class="col-sm-3 control-label">Search engine</label>
+                <div class="col-sm-9">
+                    <select id="searchEngine" name="searchEngine"  class="form-control" ng-change="updateSearchEngine(searchEngine)">
+                        <option ng-repeat="searchEngine in searchEngines" value="{{searchEngine.name}}">{{searchEngine.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
 </section>

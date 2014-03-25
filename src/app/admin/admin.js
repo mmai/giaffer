@@ -44,6 +44,10 @@ angular.module('ngDevstack.admin', [
             var Interests = $florm('interests');
             $scope.interests = Interests.all();
 
+            var options = $florm('options').all()[0];
+            $scope.options = options;
+
+            $scope.searchEngines = window.searchEngines;
             $scope.newinterest = {name: '', searchString: ''};
 
             $scope.toggleEditMode = function (interest) {
@@ -62,6 +66,15 @@ angular.module('ngDevstack.admin', [
 //                    $scope.toggleEditMode(newinterest);
                 }
             };
+
+            $scope.updateSearchEngine = function(searchEngine){
+                updateOption('searchEngine', searchEngine.name);
+            };
+
+            function updateOption(name, value){
+                options[name] = value;
+                options.save();
+            }
 
             $scope.updateInterest = function(interest){
                 interest.editMode = false;

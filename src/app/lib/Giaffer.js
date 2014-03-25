@@ -1,11 +1,71 @@
 (function(exports) {
         "use strict";
 
+        /****************** Search engines */
+        var searchEngines = {
+            google: { name: "google.com" ,
+                makeSearchUrl: function (terms){
+                    return getGoogleSearchUrl(terms);
+                }
+            },
+            googlefr: { name: "google.fr" ,
+                makeSearchUrl: function (terms){
+                    return getGoogleSearchUrl(terms, 'fr');
+                }
+            },
+            bing: { name: "bing.com" ,
+                makeSearchUrl: function (terms){
+                    return getBingSearchUrl(terms);
+                }
+            },
+            bingfr: { name: "bing.fr" ,
+                makeSearchUrl: function (terms){
+                    return getBingSearchUrl(terms, 'fr');
+                }
+            },
+            duckduckgo: { name: "duckduckgo.com" ,
+                makeSearchUrl: function (terms){
+                    var url = 'https://www.duckduckgo.com/?q=';
+                    url += terms.map(function (term){
+                            return encodeURIComponent(term);
+                        }).join('+');
+                    return url;
+                }
+            }
+        };
+
+        function getBingSearchUrl(terms, lang){
+            var url = getEngineSearchUrl(terms, 'bing'); 
+            if (lang){
+                url += '&cc='+lang;
+            }
+            return url;
+        }
+
+        function getGoogleSearchUrl(terms, lang){
+            return getEngineSearchUrl(terms, 'google', lang);
+        }
+
+        function getEngineSearchUrl(terms, engine, lang){
+            var engine = engine || 'google';
+            var langext = lang || 'com';
+            var url = 'http://www.' + engine + '.'+ langext + '/search?q=';
+            url += terms.map(function (term){
+                    return encodeURIComponent(term);
+                }).join(' ');
+            return url;
+        }
+        /* end Search engines */
+
         function Giaffer(options, themes){
             this.options = options;
             this.themes = themes;
+            if (options.searchEngine){
+                this.makeSearchUrl = searchEngines[options.searchEngine].makeSearchUrl;
+            }
         }
         exports.Giaffer = Giaffer;
+        exports.searchEngines = searchEngines;
 
         Giaffer.prototype = {
             getTheme: function(term) {
@@ -38,25 +98,8 @@
                 }
                 return searchQuery;
             },
-            makeSearchUrl: getGoogleFRSearchUrl 
+            makeSearchUrl: searchEngines.google.makeSearchUrl
         };
-
-        /****************** Search engines */
-        //Google FR
-        function getGoogleFRSearchUrl(terms){
-            return getGoogleSearchUrl(terms, 'fr');
-        }
-
-        //Google
-        function getGoogleSearchUrl(terms, lang){
-            var langext = lang || 'com';
-            var url = 'http://www.google.'+ langext + '/search?q=';
-            url += terms.map(function (term){
-                    return encodeURIComponent('"' + term + '"');
-                }).join('+');
-            return url;
-        }
-        /* end Search engines */
 
         /******************* utilities */
         function arrayRandomElements(myArray, nbelements){
