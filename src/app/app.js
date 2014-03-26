@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('ngDevstack', [
+angular.module('ngGiaffer', [
     'templates',
-    'ngDevstack.conf',
-    'ngDevstack.home',
-    'ngDevstack.admin',
-    'ngDevstack.about',
+    'ngGiaffer.conf',
+    'ngGiaffer.home',
+    'ngGiaffer.admin',
+    'ngGiaffer.about',
     'ui.router'
 ])
 

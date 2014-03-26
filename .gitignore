@@ -5,3 +5,4 @@ dist/
 node_modules/
 vendor/
 bacasable/
+phantomjsdriver.log

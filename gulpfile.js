@@ -180,26 +180,39 @@ gulp.task('html', ['html:replace'], function () {
 // ============
 
 //  *** Unit tests *****
-var unit_test_files = config.vendor_files.js.concat([
+var testFiles = [
+    'node_modules/chai/chai.js',
+    config.build + '/vendor/**/*.js',
     'vendor/angular-mocks/angular-mocks.js',
     'vendor/jquery/dist/jquery.js',
-    'node_modules/chai/chai.js',
-    config.build + '/app/**/*.js',
-    //config.app + '/app/**/*.spec.js',//Unit tests
+    config.build + '/+(app|common)/**/*.js',
+    config.paths.tests,
     config.test + '/integration/**/*.spec.js',//Integration tests => à faire dans protractor ?
-]);
+];
 
-gulp.task('karma', function() {
-    gulp.src(unit_test_files)
+gulp.task('test:run', ['vendor:assets'], function() {
+        // Be sure to return the stream
+        return gulp.src(testFiles)
         .pipe(plugins.karma({
                     configFile: config.test + '/karma.conf.js',
                     action: 'run'
-//                    action: 'watch'
+                }))
+        .on('error', function(err) {
+                process.exit(1);
+            });
+    });
+
+gulp.task('test:watch', ['vendor:assets'], function() {
+    gulp.src(testFiles)
+        .pipe(plugins.karma({
+                    configFile: config.test + '/karma.conf.js',
+                    action: 'watch'
                 }));
 });
 
 //  *** End to end tests *****
 //  Note : the 'watch' task must have been started so that the server is available
+//  Choose method A or method B in test/e2e.conf
 //
 //  method A : launch this task before the 'e2etests' task
 //  'seleniumAddress' must be set in test/e2e.conf.js

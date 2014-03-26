@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ngDevstack.admin', [
-    'ngDevStack.ngReallyClickModule',
+angular.module('ngGiaffer.admin', [
+    'ngGiaffer.ngReallyClickModule',
     'ui.router',
     'ngFlorm'
 ])
@@ -44,10 +44,11 @@ angular.module('ngDevstack.admin', [
             var Interests = $florm('interests');
             $scope.interests = Interests.all();
 
-            var options = $florm('options').all()[0];
-            $scope.options = options;
+            var options = $florm('options').all()[0] || {searchEngine:'google'};
+            $scope.options = options ;
 
             $scope.searchEngines = window.searchEngines;
+            $scope.searchEngine = $scope.searchEngines[options.searchEngine];
             $scope.newinterest = {name: '', searchString: ''};
 
             $scope.toggleEditMode = function (interest) {

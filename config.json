@@ -15,7 +15,8 @@
         ],
         "sass"   : "src/+(sass|app|common)/**/*",
         "assets" : "src/assets/**",
-        "html"   : "src/index.html"
+        "html"   : "src/index.html",
+        "tests"  : "src/+(app|common)/**/*.spec.js"
     },
 
     "vendor_files" : {

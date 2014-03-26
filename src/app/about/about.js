@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngDevstack.about', [
+angular.module('ngGiaffer.about', [
     'ui.router'
 ])
 

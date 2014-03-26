@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngDevstack.myDirectiveModule', [])
+angular.module('ngGiaffer.myDirectiveModule', [])
 
 .directive('myDirective', function () {
     return {

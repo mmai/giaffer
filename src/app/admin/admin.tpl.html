@@ -60,8 +60,7 @@
             <div class="form-group">
                 <label for="searchEngine"  class="col-sm-3 control-label">Search engine</label>
                 <div class="col-sm-9">
-                    <select id="searchEngine" name="searchEngine"  class="form-control" ng-change="updateSearchEngine(searchEngine)">
-                        <option ng-repeat="searchEngine in searchEngines" value="{{searchEngine.name}}">{{searchEngine.name}}</option>
+                    <select ng-model="searchEngine" ng-options="s.name for s in searchEngines" id="searchEngine" class="form-control" ng-change="updateSearchEngine(searchEngine)">
                     </select>
                 </div>
             </div>

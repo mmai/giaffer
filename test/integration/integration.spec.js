@@ -4,10 +4,10 @@ describe( 'Integration of Giaffer', function() {
         app = $('');
 
         
-        beforeEach(module('ngDevstack'));
+        beforeEach(module('ngGiaffer'));
 
         beforeEach(inject(function($rootScope, $compile, $templateCache){
-                    html = '<div ng-app="ngDevstack"><div ng-view></div>';
+                    html = '<div ng-app="ngGiaffer"><div ng-view></div>';
                     html += $templateCache.get('home/home.tpl.html');
                     html += "</div>";
                     app = $compile(html)($rootScope.$new());
@@ -15,7 +15,7 @@ describe( 'Integration of Giaffer', function() {
                 }));
 
         it( 'should have the correct header', function() {
-                expect(app.find('h1').text()).to.equal("This is ng-devstack!");
+                expect(app.find('h1').text()).to.equal("Giaffer");
             });
 
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngDevstack.conf', [])
+angular.module('ngGiaffer.conf', [])
 
 .constant('conf', {
     api: {

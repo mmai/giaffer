@@ -4,7 +4,7 @@
  * A generic confirmation for risky actions.
  * Usage: Add attributes: ng-really-message="Are you sure?/yes/no" ng-really-click="takeAction()" function
  */
-angular.module('ngDevStack.ngReallyClickModule', ['ui.bootstrap'])
+angular.module('ngGiaffer.ngReallyClickModule', ['ui.bootstrap'])
 
 .directive('ngReallyClick', ['$modal', function($modal) {
 

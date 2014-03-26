@@ -4,7 +4,7 @@ describe( 'AppCtrl', function() {
         describe( 'isCurrentUrl', function() {
                 var AppCtrl, $location, $scope;
 
-                beforeEach( angular.mock.module( 'ngDevstack' ) );
+                beforeEach( angular.mock.module( 'ngGiaffer' ) );
 
                 beforeEach( inject( function( $controller, _$location_, $rootScope ) {
                             $location = _$location_;

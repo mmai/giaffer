@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngDevstack.home', [
+angular.module('ngGiaffer.home', [
     'ui.router',
     'ngFlorm'
 ])
