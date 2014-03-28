@@ -36,3 +36,24 @@ describe( 'Integration of Giaffer', function() {
             });
             */
     });
+describe( 'Admin', function() {
+        app = $('');
+
+        
+        beforeEach(module('ngGiaffer'));
+
+        beforeEach(inject(function($rootScope, $compile, $templateCache){
+                    html = '<div ng-app="ngGiaffer"><div ng-view></div>';
+                    html += $templateCache.get('admin/admin.tpl.html');
+                    html += "</div>";
+                    app = $compile(html)($rootScope.$new());
+                    $rootScope.$digest();
+                }));
+
+
+        it( 'should display the search engines select box', function() {
+                //expect(window.document.getElementById('searchEngine').options).to.have.deep.property("[0].value", 'google');
+                var optionsElements = app.find('select options');
+                expect(optionsElements).to.have.deep.property("[0].val", 'google');
+            });
+    });

@@ -11,32 +11,44 @@ angular.module('ngGiaffer.admin', [
         url: '/admin/',
         views: {
             "main": {
-                controller: 'AdminCtrl',
                 templateUrl: 'admin/admin.tpl.html'
             }
         },
         data: {
             pageTitle: 'Admin'
         }
-
-
-        /*,onEnter: function($stateParams, $state, $modal) {
-        $modal.open({
-            controller: 'AdminCtrl',
-            templateUrl: "admin/admin.tpl.html",
-        }).result.then(function(result) {
-            if (result) {
-                return $state.transitionTo("home");
-            }
-        });
-   }     */
-    
-
-    });
+    })
 }])
 
+.controller('SettingsCtrl', [
+        '$scope',
+        '$florm',
+        function($scope, $florm){
 
-.controller('AdminCtrl', [
+            var settings = $florm('settings').all()[0];
+            $scope.settings = settings ;
+
+            function updateSetting(name, value){
+                settings[name] = value;
+                settings.save();
+            }
+
+            /***** SearchEngine ****/
+            $scope.searchEngines = Object.getOwnPropertyNames(window.searchEngines);
+            $scope.searchEngine = settings.searchEngine;
+            $scope.updateSearchEngine = function(searchEngine){
+                updateSetting('searchEngine', searchEngine);
+            };
+
+            /***** Number of searched topics ****/
+            $scope.nbTerms = settings.nbTerms;
+            $scope.updateNbTerms = function(nbTerms){
+                updateSetting('nbTerms', nbTerms);
+            };
+
+        }])
+
+.controller('InterestsCtrl', [
         '$scope',
         '$florm',
         function($scope, $florm){
@@ -44,11 +56,6 @@ angular.module('ngGiaffer.admin', [
             var Interests = $florm('interests');
             $scope.interests = Interests.all();
 
-            var options = $florm('options').all()[0] || {searchEngine:'google'};
-            $scope.options = options ;
-
-            $scope.searchEngines = window.searchEngines;
-            $scope.searchEngine = $scope.searchEngines[options.searchEngine];
             $scope.newinterest = {name: '', searchString: ''};
 
             $scope.toggleEditMode = function (interest) {
@@ -64,18 +71,8 @@ angular.module('ngGiaffer.admin', [
                     newinterest.save();
                     $scope.newinterest = {};
                     $scope.interests.push(newinterest);
-//                    $scope.toggleEditMode(newinterest);
                 }
             };
-
-            $scope.updateSearchEngine = function(searchEngine){
-                updateOption('searchEngine', searchEngine.name);
-            };
-
-            function updateOption(name, value){
-                options[name] = value;
-                options.save();
-            }
 
             $scope.updateInterest = function(interest){
                 interest.editMode = false;
@@ -98,7 +95,6 @@ angular.module('ngGiaffer.admin', [
                 interest.terms.push(interest.newterm);
                 delete(interest.newterm);
                 interest.save();
-//                localStorageService.set('interests', $scope.interests);
             };
 
 
@@ -107,7 +103,6 @@ angular.module('ngGiaffer.admin', [
                         return t !== term;
                     });
                 interest.save();
-                //localStorageService.set('interests', $scope.interests);
             };
 
 

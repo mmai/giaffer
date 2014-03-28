@@ -24,12 +24,10 @@ angular.module('ngGiaffer.home', [
         '$scope',
         '$florm',
         function($scope, $florm){
-            var options = {
-                nbTerms:2
-            };
+            var settings = $florm('settings').all()[0];
 
             var Interests = $florm('interests');
-            var Giaffer = new window.Giaffer(options, Interests.all());
+            var Giaffer = new window.Giaffer(settings, Interests.all());
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();

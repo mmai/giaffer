@@ -1,0 +1,28 @@
+<section class="options" ng-controller="SettingsCtrl">
+    <div class="row-fluid">
+        <h1>Settings</h1>
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <fieldset>
+                <label for="searchEngine"  class="col-sm-5 control-label">Search engine</label>
+                <div class="col-sm-7">
+                    <select ng-model="searchEngine" ng-options="s for s in searchEngines" id="searchEngine" class="form-control" ng-change="updateSearchEngine(searchEngine)">
+                    </select>
+                </div>
+
+                <label for="nbTerms"  class="col-sm-5 control-label">Number of topics by search</label>
+                <div class="col-sm-7">
+                    <select ng-model="nbTerms" id="nbTerms" class="form-control" ng-change="updateNbTerms(nbTerms)" >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+<!--                     <input type="text"ng-model="nbTerms" id="nbTerms" class="form-control" ng-change="updateNbTerms(nbTerms)"> -->
+                </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</section>

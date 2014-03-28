@@ -25,6 +25,8 @@
             "vendor/angular-ui-router/release/angular-ui-router.js",
             "vendor/angular-florm/lib/angular-florm.js",
             "vendor/lodash/dist/lodash.js",
+            "vendor/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js",
+            "vendor/angular-bootstrap/ui-bootstrap.js",
             "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
         ],
         "css": [
