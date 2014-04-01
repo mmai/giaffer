@@ -29,6 +29,7 @@
             "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
         ],
         "css": [
+            "vendor/bootswatch/darkly/bootstrap.css"
         ],
         "assets": [
             "vendor/bootstrap-sass-official/vendor/assets/fonts/**/*"

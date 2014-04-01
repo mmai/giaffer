@@ -5,14 +5,15 @@
             <button class="btn btn-warning" ng-click="undoDeleteInterest()">Undo</button>
         </alert>
         <h2>Manage your interests</h2>
-
+<br>
     <p>
     Establish your list of interesting topics. For each topic, set its name and its associated search request.
     <br>No account creation is needed, all data is saved in your browser and will be available the next time you visit this page. 
-    </p>
-        <form ng-submit="addInterest();">
+    </p><br>
+        <form ng-submit="addInterest();" class="form-horizontal">
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="newinterest.name" placeholder="New interest">
+                <label class="sr-only" for="newinerest">New interest</label>
+                <input type="text" class="form-control" id="newinterest" ng-model="newinterest.name" placeholder="New interest">
                 <span class="input-group-btn">
                     <input type="submit" class="btn btn-default" type="button" id="btnSaveNewInterest">Add</input>
                 </span>
@@ -20,12 +21,20 @@
         </form>
         <table class="table table-striped table-bordered table-condensed table-hover">
             <tr ng-show="interests.length > 0">
-                <th style="width: 100px;"></th>
                 <th>Name</th>
                 <th>Search request *</th>
+                <th style="width: 100px;"></th>
             </tr>
             <tr ng-repeat="interest in interests | orderBy:'name':false">
                 <form>
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.name}}</span>
+                        <input ng-show="interest.editMode === true"type="text" class="form-control" ng-model="interest.name">
+                    </td>
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.searchString}}</span>
+                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.searchString">
+                    </td>
                     <td>
                         <div class="btn-toolbar" ng-show="interest.editMode == null || interest.editMode == false">
                             <div class="btn-group">
@@ -38,19 +47,6 @@
                                 <i class="btn glyphicon glyphicon-save" ng-click="updateInterest(interest)"></i>
                                 <i class="btn glyphicon glyphicon-remove" ng-click="cancelEditInterest(interest)"></i>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.name}}</span>
-
-                        <div class="input-group" ng-show="interest.editMode === true" >
-                            <input type="text" class="form-control" ng-model="interest.name">
-                        </div>
-                    </td>
-                    <td>
-                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.searchString}}</span>
-                        <div class="input-group" ng-show="interest.editMode === true" >
-                            <input type="text" class="form-control" ng-model="interest.searchString">
                         </div>
                     </td>
                 </form>

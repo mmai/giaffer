@@ -28,7 +28,7 @@
         <nav class="hidden-xs">
                 <ul class="nav navbar-nav">
                     <a ui-sref="home" role="button" class="navbar-brand">Giaffer</a>
-                    <li ui-sref-active="active"><a ui-sref="interests">Manage interests</a></li>
+                    <li ui-sref-active="active"><a ui-sref="interests">Interests</a></li>
                     <li><a ng-click="openSettings()">Settings</a></li>
                     <li><a ng-click="openAbout()">About</a ></li>
                 </ul>
@@ -36,7 +36,7 @@
             <nav class="visible-xs" collapse="!isCollapsed">
                 <ul class="nav navbar-nav" ng-show="isCollapsed">
             <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Home</a></li>
-            <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Manage interests</a></li>
+            <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Interests <span class="badge pull-right">{{interests.length}}</span></a></li>
             <li ui-sref-active="active"><a ui-sref="settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
             <li ui-sref-active="active"><a ui-sref="about" ng-click="isCollapsed = !isCollapsed">About</a></li>
                 </ul>

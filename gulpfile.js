@@ -59,6 +59,15 @@ gulp.task('vendor:assets', function () {
         .pipe(gulp.dest(config.build + '/assets'));
 });
 
+// Copy vendor CSS files to /build/
+gulp.task('vendor:css', function () {
+    if (!config.vendor_files.css.length) {
+        return;
+    }
+    return gulp.src(config.vendor_files.css, { base: '.' })
+        .pipe(gulp.dest(config.build));
+});
+
 
 
 // Prepare JavaScript
@@ -234,7 +243,7 @@ gulp.task('tests', ['e2etests', 'karma']);
 // ============
 
 // Add files to Watch
-gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:img', 'vendor:js', 'vendor:assets', 'html:inject'], function () {
+gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:img', 'vendor:js', 'vendor:css', 'vendor:assets', 'html:inject'], function () {
     require('./server.js')(server);
 
     // watch for JS changes
@@ -306,7 +315,7 @@ gulp.task('clean', function () {
 // ===============
 
 gulp.task('build', ['clean'], function () {
-    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject');
+    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:css', 'vendor:assets', 'assets:img', 'html:inject');
 });
 
 gulp.task('compile', ['build'], function () {

@@ -28,6 +28,7 @@ angular.module('ngGiaffer.home', [
             var Interests = $florm('interests');
             var Giaffer = new window.Giaffer($rootScope.settings, Interests.all());
 
+            $scope.nbInterests = Interests.all().length;
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
             };
