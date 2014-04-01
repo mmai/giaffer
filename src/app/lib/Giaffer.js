@@ -61,7 +61,8 @@
             this.options = options;
             this.themes = themes;
             if (options.searchEngine){
-                this.makeSearchUrl = searchEngines[options.searchEngine].makeSearchUrl;
+                this.setEngine(options.searchEngine);
+//                this.makeSearchUrl = searchEngines[options.searchEngine].makeSearchUrl;
             }
         }
         exports.Giaffer = Giaffer;
@@ -97,6 +98,10 @@
                     display: searchTerms.join(' ')
                 }
                 return searchQuery;
+            },
+            setEngine: function(engine){
+                var that = this;
+                that.makeSearchUrl = searchEngines[engine].makeSearchUrl;
             },
             makeSearchUrl: searchEngines.google.makeSearchUrl
         };

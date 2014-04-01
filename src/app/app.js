@@ -4,8 +4,8 @@ angular.module('ngGiaffer', [
     'templates',
     'ngGiaffer.conf',
     'ngGiaffer.home',
-    'ngGiaffer.admin',
-    'ngGiaffer.options',
+    'ngGiaffer.interests',
+    'ngGiaffer.settings',
     'ngGiaffer.about',
     'ui.router'
 ])
@@ -42,7 +42,8 @@ angular.module('ngGiaffer', [
     });
 })
 
-.controller('AppCtrl', function ($rootScope, $scope, $florm) {
+.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal',
+        function ($rootScope, $scope, $florm, $modal) {
 
         var defaultSettings = {
             searchEngine: 'google',
@@ -54,10 +55,25 @@ angular.module('ngGiaffer', [
             var defaultsOpt = Settings.new(defaultSettings);
             defaultsOpt.save();
         }
+        $rootScope.settings = Settings.all()[0];
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 if (angular.isDefined(toState.data.pageTitle)) {
                     $scope.pageTitle = toState.data.pageTitle + ' | Giaffer';
                 }
             });
-});
+
+        $scope.openSettings = function(){
+            $modal.open({
+                    controller: 'SettingsCtrl',
+                    templateUrl: "settings/settings.tpl.html",
+                });
+        }  
+
+        $scope.openAbout = function(){
+            $modal.open({
+                    controller: 'AboutCtrl',
+                    templateUrl: "about/about.tpl.html",
+                });
+        }  
+}]);

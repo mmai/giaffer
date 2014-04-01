@@ -1,5 +1,9 @@
 <section class="interests" ng-controller="InterestsCtrl">
     <div class="row-fluid">
+        <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
+            <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;
+            <button class="btn btn-warning" ng-click="undoDeleteInterest()">Undo</button>
+        </alert>
         <h2>Manage your interests</h2>
 
     <p>
@@ -26,7 +30,7 @@
                         <div class="btn-toolbar" ng-show="interest.editMode == null || interest.editMode == false">
                             <div class="btn-group">
                                 <i class="btn glyphicon glyphicon-edit" ng-click="toggleEditMode(interest)"></i>
-                                <i class="btn glyphicon glyphicon-trash" ng-really-message="'Really delete ?'" ng-really-click="deleteInterest(interest)"></i>
+                                <i class="btn glyphicon glyphicon-trash" ng-click="deleteInterest(interest)"></i>
                             </div>
                         </div>
                         <div class="btn-toolbar" ng-show="interest.editMode == true">
@@ -53,8 +57,11 @@
             </tr>
         </table>
 
-        <p> * The search request should follow the same syntax as the one used by the selected search engine.<br>
-        phrases delimited by double quotes, pipe symbol "|" to separate alternative versions of a same search term.</p>
+        <p> <strong>*</strong> The search request should follow the same syntax as the one used by the search engine :<ul>
+            <li>Delimit phrases with double quotes</li>
+            <li>With Google and Bing, you can use the pipe symbol "|" to separate alternative versions of a same search term</li>
+            </ul>
+         </p>
 
     </div>
 </section>

@@ -22,16 +22,20 @@ angular.module('ngGiaffer.home', [
 
 .controller('HomeCtrl', [
         '$scope',
+        '$rootScope',
         '$florm',
-        function($scope, $florm){
-            var settings = $florm('settings').all()[0];
-
+        function($scope, $rootScope, $florm){
             var Interests = $florm('interests');
-            var Giaffer = new window.Giaffer(settings, Interests.all());
+            var Giaffer = new window.Giaffer($rootScope.settings, Interests.all());
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
             };
-            $scope.newterms();
+
+            $rootScope.$watchCollection('settings', function(newSettings, oldSettings){
+                    Giaffer.setEngine(newSettings.searchEngine);
+                    $scope.newterms();
+                });
+
         }
     ]);

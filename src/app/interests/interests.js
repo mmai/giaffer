@@ -1,52 +1,24 @@
 'use strict';
 
-angular.module('ngGiaffer.admin', [
+angular.module('ngGiaffer.interests', [
     'ngGiaffer.ngReallyClickModule',
     'ui.router',
     'ngFlorm'
 ])
 
 .config(['$stateProvider', function ($stateProvider) {
-    $stateProvider.state('admin', {
-        url: '/admin/',
+    $stateProvider.state('interests', {
+        url: '/interests/',
         views: {
             "main": {
-                templateUrl: 'admin/admin.tpl.html'
+                templateUrl: 'interests/interests.tpl.html'
             }
         },
         data: {
-            pageTitle: 'Admin'
+            pageTitle: 'Interests'
         }
     })
 }])
-
-.controller('SettingsCtrl', [
-        '$scope',
-        '$florm',
-        function($scope, $florm){
-
-            var settings = $florm('settings').all()[0];
-            $scope.settings = settings ;
-
-            function updateSetting(name, value){
-                settings[name] = value;
-                settings.save();
-            }
-
-            /***** SearchEngine ****/
-            $scope.searchEngines = Object.getOwnPropertyNames(window.searchEngines);
-            $scope.searchEngine = settings.searchEngine;
-            $scope.updateSearchEngine = function(searchEngine){
-                updateSetting('searchEngine', searchEngine);
-            };
-
-            /***** Number of searched topics ****/
-            $scope.nbTerms = settings.nbTerms;
-            $scope.updateNbTerms = function(nbTerms){
-                updateSetting('nbTerms', nbTerms);
-            };
-
-        }])
 
 .controller('InterestsCtrl', [
         '$scope',
@@ -56,6 +28,7 @@ angular.module('ngGiaffer.admin', [
             var Interests = $florm('interests');
             $scope.interests = Interests.all();
 
+            $scope.deletedInterest = null;
             $scope.newinterest = {name: '', searchString: ''};
 
             $scope.toggleEditMode = function (interest) {
@@ -87,9 +60,20 @@ angular.module('ngGiaffer.admin', [
             };
 
             $scope.deleteInterest = function(interest){
+                $scope.deletedInterest = interest;
                 Interests.delete(interest.id);
                 $scope.interests = Interests.all();
             };
+
+            $scope.undoDeleteInterest = function(){
+                $scope.deletedInterest.save();
+                $scope.interests = Interests.all();
+                $scope.closeUndoDelete();
+            };
+
+            $scope.closeUndoDelete = function(){
+                $scope.deletedInterest = null;
+            }
 
             $scope.addInterestTerm = function(interest){
                 interest.terms.push(interest.newterm);

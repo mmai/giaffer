@@ -28,14 +28,16 @@
         <nav class="hidden-xs">
                 <ul class="nav navbar-nav">
                     <a ui-sref="home" role="button" class="navbar-brand">Giaffer</a>
-                    <li ui-sref-active="active"><a ui-sref="admin">settings</a></li>
-                    <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+                    <li ui-sref-active="active"><a ui-sref="interests">Manage interests</a></li>
+                    <li><a ng-click="openSettings()">Settings</a></li>
+                    <li><a ng-click="openAbout()">About</a ></li>
                 </ul>
             </nav>
             <nav class="visible-xs" collapse="!isCollapsed">
                 <ul class="nav navbar-nav" ng-show="isCollapsed">
             <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Home</a></li>
-            <li ui-sref-active="active"><a ui-sref="admin" ng-click="isCollapsed = !isCollapsed">settings</a></li>
+            <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Manage interests</a></li>
+            <li ui-sref-active="active"><a ui-sref="settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
             <li ui-sref-active="active"><a ui-sref="about" ng-click="isCollapsed = !isCollapsed">About</a></li>
                 </ul>
             </nav>
@@ -46,14 +48,10 @@
 <div class="header-placeholder"></div>
 <div role="main">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div ui-view="main"></div>
-<!--                 <footer>Based on an idea by <a href="http://ludism.org/tinfoil">Ron Hale Evans</a></footer> -->
-            </div>
-        </div>
+        <div ui-view="main"></div>
+        <footer>Giaffer &copy; 2014 <a href="http://github.com/mmai/">Henri Bourcereau</a> - Original idea <a href="http://ludism.org/tinfoil">Ron Hale Evans</a></footer>
     </div>
-    </div>
+</div>
 
 </body>
 </html>
