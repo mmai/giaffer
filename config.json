@@ -22,17 +22,22 @@
     "vendor_files" : {
         "js": [
             "vendor/angular/angular.js",
+            "vendor/jquery/dist/jquery.js",
             "vendor/angular-ui-router/release/angular-ui-router.js",
             "vendor/angular-florm/lib/angular-florm.js",
             "vendor/lodash/dist/lodash.js",
-            "vendor/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js",
+            "vendor/bootstrap/dist/js/bootstrap.js",
             "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
         ],
         "css": [
-            "vendor/bootswatch/darkly/bootstrap.css"
+            "vendor/bootstrap/dist/css/bootstrap.css"
         ],
         "assets": [
-            "vendor/bootstrap-sass-official/vendor/assets/fonts/**/*"
         ]
+    },
+
+    "bootstrap": {
+        "theme": "flatly",
+        "path": "vendor/bootstrap/dist"
     }
 }
