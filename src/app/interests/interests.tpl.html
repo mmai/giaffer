@@ -1,8 +1,8 @@
 <section class="interests" ng-controller="InterestsCtrl">
     <div class="row-fluid">
         <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
-            <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;
-            <button class="btn btn-warning" ng-click="undoDeleteInterest()">Undo</button>
+            <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;&nbsp;
+            <a ng-click="undoDeleteInterest()">Undo</a>
         </alert>
         <h2>Manage your interests</h2>
 <br>
@@ -15,25 +15,24 @@
                 <label class="sr-only" for="newinerest">New interest</label>
                 <input type="text" class="form-control" id="newinterest" ng-model="newinterest.name" placeholder="New interest">
                 <span class="input-group-btn">
-                    <input type="submit" class="btn btn-default" type="button" id="btnSaveNewInterest">Add</input>
+                    <input type="submit" class="btn btn-default" id="btnSaveNewInterest">Add</input>
                 </span>
             </div><!-- /input-group -->
         </form>
         <table class="table table-striped table-bordered table-condensed table-hover">
             <tr ng-show="interests.length > 0">
                 <th>Name</th>
-                <th>Search request *</th>
+                <th>Search request * </th>
                 <th style="width: 100px;"></th>
             </tr>
             <tr ng-repeat="interest in interests | orderBy:'name':false">
-                <form>
                     <td>
                         <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.name}}</span>
-                        <input ng-show="interest.editMode === true"type="text" class="form-control" ng-model="interest.name">
+                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.name" ng-enter="updateInterest(interest)" ng-esc="cancelEditInterest(interest)">
                     </td>
                     <td>
                         <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.searchString}}</span>
-                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.searchString">
+                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.searchString" ng-enter="updateInterest(interest)" ng-esc="cancelEditInterest(interest)">
                     </td>
                     <td>
                         <div class="btn-toolbar" ng-show="interest.editMode == null || interest.editMode == false">
@@ -49,7 +48,6 @@
                             </div>
                         </div>
                     </td>
-                </form>
             </tr>
         </table>
 

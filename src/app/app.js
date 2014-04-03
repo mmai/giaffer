@@ -7,6 +7,7 @@ angular.module('ngGiaffer', [
     'ngGiaffer.interests',
     'ngGiaffer.settings',
     'ngGiaffer.about',
+    'ngGiaffer.ngKeyPressModule',
     'ui.router'
 ])
 

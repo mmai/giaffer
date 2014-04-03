@@ -2,7 +2,7 @@ body {
     padding-top: 20px;
 }
 
-nav {
+nav, .alert {
     a {
         cursor: pointer;
     }
@@ -10,4 +10,11 @@ nav {
 
 .header-placeholder {
     height: 50px;
+}
+
+// bootswatch theme overrides
+.btn-toolbar {
+    .btn, .btn-group, .input-group {
+        margin-left: 0px;
+    }
 }
