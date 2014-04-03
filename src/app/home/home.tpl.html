@@ -4,7 +4,7 @@
                 <div class="col-lg-6">
                     <h1>Giaffer</h1>
                     <p class="lead">
-                    Discover new web pages by submitting random combinations of your interests to search engines.
+                    Discover new web pages by searching random combinations of your interests on the net
                     </p>
                 </div>
                 <div class="col-lg-6" style="padding: 15px 15px 0 15px;">
@@ -15,14 +15,14 @@
     </div><p>
 </p>
         <div class="jumbotron">
-        <p>What about searching for something related to 
-        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <i>{{theme.name}}</i> </span> ?
+            <p>What about searching for <span class="hidden-xs">something related to</span><br> 
+        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
         </p>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                {{search.display}}
-            </div>
-        </div>
+<!--         <div class="panel panel-default"> -->
+<!--             <div class="panel-body"> -->
+<!--                 {{search.display}} -->
+<!--             </div> -->
+<!--         </div> -->
         <p>
         <a class="btn btn-default btn-lg" ng-click='newterms()'>
             <span class="glyphicon glyphicon-refresh"></span> Boring, please pick others
