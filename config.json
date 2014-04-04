@@ -37,7 +37,7 @@
     },
 
     "bootstrap": {
-        "theme": "flatly",
+        "theme": "readable",
         "path": "vendor/bootstrap/dist"
     }
 }

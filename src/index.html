@@ -1,60 +1,69 @@
 <!doctype html>
 <html ng-app="ngGiaffer" ng-controller="AppCtrl">
 <head>
-    <base href="/">
-    <meta charset="UTF-8">
-    <title ng-bind="pageTitle"></title>
+<base href="/">
+<meta charset="UTF-8">
+<title ng-bind="pageTitle"></title>
 
-    <!-- build:css --><!-- inject:css -->
-    <!-- endinject --><!-- endbuild -->
-    <!-- build:js --><!-- inject:js -->
-    <!-- endinject --><!-- endbuild -->
+<!-- build:css --><!-- inject:css -->
+<!-- endinject --><!-- endbuild -->
+<!-- build:js --><!-- inject:js -->
+<!-- endinject --><!-- endbuild -->
 
 </head>
 <body ng-cloak>
-<header class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-click="isCollapsed = !isCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand visible-xs" href="#">Giaffer</a>
+<div id="wrap">
+    <header class="container">
+    <div class="row">
+        <div class="col-md-6">
+    <h1>Giaffer</h1>
         </div>
 
-        <nav class="hidden-xs">
-                <ul class="nav navbar-nav">
-                    <li ui-sref-active="active"><a ui-sref="home">Giaffer search</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interests">Interests</a></li>
-                    <li><a ng-click="openSettings()">Settings</a></li>
-                    <li><a ng-click="openAbout()">About</a ></li>
-                </ul>
-            </nav>
-            <nav class="visible-xs" collapse="!isCollapsed">
-                <ul class="nav navbar-nav" ng-show="isCollapsed">
-            <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Home</a></li>
-            <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Interests <span class="badge pull-right">{{interests.length}}</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
-            <li ui-sref-active="active"><a ui-sref="about" ng-click="isCollapsed = !isCollapsed">About</a></li>
-                </ul>
-            </nav>
+        <div class="col-md-6">
+            <div class="navbar navbar-default">
+                <div class="navbar-inner">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-click="isCollapsed = !isCollapsed">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand visible-xs" href="#">Giaffer</a>
+                        </div>
 
-        </div>
-    </div>
-</header>
-<div class="header-placeholder"></div>
-<div role="main">
+                        <nav class="hidden-xs">
+                            <ul class="nav navbar-nav">
+                                <li ui-sref-active="active"><a ui-sref="home">Giaffer search</a></li>
+                                <li ui-sref-active="active"><a ui-sref="interests">Interests</a></li>
+                                <li><a ng-click="openSettings()">Settings</a></li>
+                                <li><a  ng-click="openAbout()">About</a></li>
+                            </ul>
+                        </nav>
+                        <nav class="visible-xs" collapse="!isCollapsed">
+                            <ul class="nav navbar-nav" ng-show="isCollapsed">
+                                <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Home</a></li>
+                                <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Interests <span class="badge pull-right">{{interests.length}}</span></a></li>
+                                <li ui-sref-active="active"><a ui-sref="settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
+                                <li ui-sref-active="active"><a ui-sref="about" ng-click="isCollapsed = !isCollapsed">About</a></li>
+                            </ul>
+                        </nav>
+
+                </div>
+            </div>
+        </div><!--  col -->
+    </div><!--  row -->
+    </header>
+<div role="main" id="main">
     <div class="container">
-        <div ui-view="main"></div>
-        <footer>Giaffer &copy; 2014 <a href="http://github.com/mmai/">Henri Bourcereau</a>        
-<!--     <p>The idea behind Giaffer was proposed by <a href="http://ludism.org/tinfoil">Ron Hale Evans</a> in the chapter <em>Integrate your Interests</em> of his book <em>Mindhacker</em>.</p> -->
-<!--     <p>Giaffer is the king of Serendip who sent his three sons explore the world in the fairy tale <a href="https://en.wikipedia.org/wiki/The_Three_Princes_of_Serendip">The Three Princes of Serendip</a> from which Horace Walpole coined the concept of 'serendipity'.</p> -->
-        </footer>
+        <div ui-view="main" class="flip"></div>
     </div>
 </div>
+</div>
 
+<footer class="container">
+    Giaffer &copy; 2014 <a href="http://github.com/mmai/">Henri Bourcereau</a>        
+    - original idea <a href="http://ludism.org/tinfoil">Ron Hale Evans</a>
+</footer>
 </body>
 </html>

@@ -1,5 +1,29 @@
-body {
-    padding-top: 20px;
+$footer_height: 50px;
+
+html, body {
+    height:100%;
+
+    #wrap {
+        min-height: 100%;
+        height: auto !important;
+        margin-bottom: -$footer_height;
+    }
+
+    #main {
+        overflow:auto;
+        padding-bottom: $footer_height + 50px;
+    }
+
+    footer {
+        height: $footer_height;
+    }
+}
+
+section {
+    h2 {
+        margin-top: 0px;
+        line-height: 0.6;
+    }
 }
 
 nav, .alert {
@@ -8,8 +32,28 @@ nav, .alert {
     }
 }
 
-.header-placeholder {
-    height: 50px;
+.container {
+    /* -moz, -o- prefexies are skipped */
+    -webkit-transition: -webkit-transform 1s;
+    -webkit-perspective: 600px;
+
+    .flip {
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -webkit-transition: all 1s ease-in-out;
+    }
+    .flip.ng-enter {
+        -webkit-transform: rotateY(-180deg);
+    }
+    .flip.ng-enter-active {
+        -webkit-transform: rotateY(0deg);
+    }
+    .flip.ng-leave {
+        -webkit-transform: rotateY(0deg);
+    }
+    .flip.ng-leave-active {
+        -webkit-transform: rotateY(180deg);
+    }
 }
 
 // bootswatch theme overrides

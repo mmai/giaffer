@@ -9,6 +9,7 @@ angular.module('ngGiaffer', [
     'ngGiaffer.about',
     'ngGiaffer.ngKeyPressModule',
     'ui.router'
+//    , 'ngAnimate'
 ])
 
 .config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
