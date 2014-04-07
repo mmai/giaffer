@@ -6,7 +6,20 @@ angular.module('ngGiaffer.conf', [])
     api: {
         login  : '/api/login',
         logout : '/api/logout',
-        signup : '/api/signup',
         expiry : '/api/expiry'
     }
-});
+})
+
+.constant('defaults', {
+        search: {
+            searchEngine: 'google',
+            nbTerms: 2
+        },
+        interests: [
+            {name:"Number theory", searchString:'"Number theory"|"prime numbers"|"nombres premiers"' },
+            {name:"Oulipo", searchString:'"Oulipo"|"Queneau"|"Georges Perec"|"Jacques Roubaud"' },
+            {name:"Monty Pythons", searchString:'"Monty Pythons"|"John Cleese"' },
+            {name:"Borges", searchString:'"Borges"' },
+            {name:"Proust", searchString:'"Proust"|"à la recherche du temps perdu"' }
+        ]
+    });

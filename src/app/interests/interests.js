@@ -75,20 +75,5 @@ angular.module('ngGiaffer.interests', [
                 $scope.deletedInterest = null;
             }
 
-            $scope.addInterestTerm = function(interest){
-                interest.terms.push(interest.newterm);
-                delete(interest.newterm);
-                interest.save();
-            };
-
-
-            $scope.deleteInterestTerm = function(interest, term){
-                interest.terms  = interest.terms.filter(function(t){
-                        return t !== term;
-                    });
-                interest.save();
-            };
-
-
         }]);
 

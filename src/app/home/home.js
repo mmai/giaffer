@@ -26,9 +26,14 @@ angular.module('ngGiaffer.home', [
         '$florm',
         function($scope, $rootScope, $florm){
             var Interests = $florm('interests');
+            var State = $florm('state');
+            var state = State.all()[0];
+
             var Giaffer = new window.Giaffer($rootScope.settings, Interests.all());
 
             $scope.nbInterests = Interests.all().length;
+            $scope.firstVisit = state.firstVisit;
+
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
             };
@@ -36,6 +41,10 @@ angular.module('ngGiaffer.home', [
             $rootScope.$watchCollection('settings', function(newSettings, oldSettings){
                     Giaffer.setEngine(newSettings.searchEngine);
                     $scope.newterms();
+                });
+
+            $rootScope.$watchCollection('Interests', function(newi, oldi){
+                    $rootScope.checkFirstVisit($florm);
                 });
 
         }
