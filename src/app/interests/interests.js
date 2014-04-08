@@ -22,11 +22,13 @@ angular.module('ngGiaffer.interests', [
 
 .controller('InterestsCtrl', [
         '$scope',
+        '$rootScope',
         '$florm',
-        function($scope, $florm){
+        function($scope, $rootScope, $florm){
 
             var Interests = $florm('interests');
             $scope.interests = Interests.all();
+            $rootScope.page = 'interests';
 
             $scope.deletedInterest = null;
             $scope.newinterest = {name: '', searchString: ''};

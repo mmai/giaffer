@@ -29,13 +29,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand visible-xs" href="#">Giaffer</a>
+                            <div class="visible-xs" ng-show="firstVisit && page === 'home'">You have not configured your own interests yet. Click on the 'Interests' menu entry to manage them</div>
                         </div>
 
                         <nav class="hidden-xs">
                             <ul class="nav navbar-nav">
-                                <li ui-sref-active="active"><a ui-sref="home">Giaffer search</a></li>
-                                <li ui-sref-active="active"><a ui-sref="interests">Interests</a></li>
+                                <li id='popsupport' ui-sref-active="active"><a ui-sref="home">Giaffer search</a></li>
+                                <li ui-sref-active="active" popover-placement="bottom" popover="You have not configured your own interests yet. Click above to manage them" popover-toggle="firstVisit && page === 'home'" popover-trigger="manual"><a ui-sref="interests">Interests</a></li>
                                 <li><a ng-click="openSettings()">Settings</a></li>
                                 <li><a  ng-click="openAbout()">About</a></li>
                             </ul>

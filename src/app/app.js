@@ -8,7 +8,8 @@ angular.module('ngGiaffer', [
     'ngGiaffer.settings',
     'ngGiaffer.about',
     'ngGiaffer.ngKeyPressModule',
-    'ui.router'
+    'ui.router',
+    'ui.bootstrap'
 //    , 'ngAnimate'
 ])
 
@@ -69,6 +70,7 @@ angular.module('ngGiaffer', [
                         }
                     }
                 }
+                this.firstVisit = state.firstVisit;
             };
 
             $scope.openSettings = function(){

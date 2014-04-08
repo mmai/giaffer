@@ -32,7 +32,7 @@ angular.module('ngGiaffer.home', [
             var Giaffer = new window.Giaffer($rootScope.settings, Interests.all());
 
             $scope.nbInterests = Interests.all().length;
-            $scope.firstVisit = state.firstVisit;
+            $rootScope.page = 'home';
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
@@ -43,9 +43,10 @@ angular.module('ngGiaffer.home', [
                     $scope.newterms();
                 });
 
-            $rootScope.$watchCollection('Interests', function(newi, oldi){
-                    $rootScope.checkFirstVisit($florm);
-                });
-
+            if (state.firstVisit){
+                $rootScope.$watchCollection('Interests', function(newi, oldi){
+                        $rootScope.checkFirstVisit($florm);
+                    });
+            }
         }
     ]);
