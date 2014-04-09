@@ -56,10 +56,14 @@ gulp.task('bootstrap:base', function () {
     .pipe(gulp.dest(config.build));
 });
 
-// Copy bootstrap theme file to build
+// Copy bootstrap themes file to build
 gulp.task('bootstrap:theme', function () {
-    return gulp.src('vendor/bootswatch/' + config.bootstrap.theme + '/bootstrap.css')
-        .pipe(gulp.dest(config.build + '/' + config.bootstrap.path + '/css'));
+    return gulp.src('vendor/bootswatch/*/bootstrap.css')
+    .pipe(plugins.rename( function(path){
+                path.basename += '-' + path.dirname; 
+                path.dirname = '';
+            }))
+        .pipe(gulp.dest(config.build + '/' + config.bootstrap.path + '/css' ));
 });
 
 // Copy vendor assets to /build/

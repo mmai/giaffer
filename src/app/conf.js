@@ -11,7 +11,8 @@ angular.module('ngGiaffer.conf', [])
 })
 
 .constant('defaults', {
-        search: {
+        settings: {
+            csstheme: 'readable',
             searchEngine: 'google',
             nbTerms: 2
         },

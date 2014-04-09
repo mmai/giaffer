@@ -29,10 +29,15 @@ angular.module('ngGiaffer.home', [
             var State = $florm('state');
             var state = State.all()[0];
 
-            var Giaffer = new window.Giaffer($rootScope.settings, Interests.all());
+            var giafferOptions = {
+                searchEngine: $rootScope.settings.searchEngine,
+                nbTerms: $rootScope.settings.nbTerms
+            };
+
+            var Giaffer = new window.Giaffer(giafferOptions, Interests.all());
 
             $scope.nbInterests = Interests.all().length;
-            $rootScope.page = 'home';
+            $rootScope.page = 'search';
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();

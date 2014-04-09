@@ -40,6 +40,11 @@ angular.module('ngGiaffer.settings', [
                 updateSetting('nbTerms', nbTerms);
             };
 
+            $scope.csstheme = $rootScope.settings.csstheme;
+            $scope.switchTheme = function(csstheme){
+                updateSetting('csstheme', csstheme);
+            };
+
         }])
 
 .controller('SettingsMinCtrl', ['$scope','$rootScope', '$florm', function SettingsCtrl($scope, $rootScope, $florm){

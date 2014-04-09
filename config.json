@@ -30,14 +30,13 @@
             "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
         ],
         "css": [
-            "vendor/bootstrap/dist/css/bootstrap.css"
         ],
         "assets": [
         ]
     },
 
     "bootstrap": {
-        "theme": "readable",
+        "theme": "darkly",
         "path": "vendor/bootstrap/dist"
     }
 }

@@ -44,7 +44,7 @@ describe( 'Admin', function() {
 
         beforeEach(inject(function($rootScope, $compile, $templateCache){
                     html = '<div ng-app="ngGiaffer"><div ng-view></div>';
-                    html += $templateCache.get('admin/admin.tpl.html');
+                    html += $templateCache.get('settings/settings.tpl.html');
                     html += "</div>";
                     app = $compile(html)($rootScope.$new());
                     $rootScope.$digest();

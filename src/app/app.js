@@ -88,18 +88,21 @@ angular.module('ngGiaffer', [
             }  
 
             setDefaults($florm, defaults);
-            $rootScope.checkFirstVisit($florm);
 
             var Settings = $florm('settings');
             $rootScope.settings = Settings.all()[0];
 
+            $rootScope.checkFirstVisit($florm);
+            angular.element(document).ready(function () {
+                    $rootScope.loaded = true;
+                });
         }]);
 
 function setDefaults($florm, defaults){
     var Settings = $florm('settings');
     if (Settings.all().length === 0){
-        var defaultsOpt = Settings.new(defaults.search);
-        defaultsOpt.save();
+        var defaultSettings = Settings.new(defaults.settings);
+        defaultSettings.save();
     }
 
     var State = $florm('state');

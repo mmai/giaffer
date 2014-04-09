@@ -57,7 +57,8 @@ module.exports = function(config) {
             // - IE (only Windows)
             // CLI --browsers Chrome,Firefox,Safari
 //            browsers : ['Chrome', 'Firefox'],
-            browsers : ['PhantomJS'],
+//            browsers : ['PhantomJS'],//Ne supporte pas $florm
+            browsers : ['Chrome'],
 
             // If browser does not capture in given timeout [ms], kill it
             // CLI --capture-timeout 5000

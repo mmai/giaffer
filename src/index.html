@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <title ng-bind="pageTitle"></title>
 
+<link ng-href="vendor/bootstrap/dist/css/bootstrap-{{settings.csstheme}}.css" rel="stylesheet" />
 <!-- build:css --><!-- inject:css -->
 <!-- endinject --><!-- endbuild -->
+<!-- <link ng-href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet" /> -->
 <!-- build:js --><!-- inject:js -->
 <!-- endinject --><!-- endbuild -->
 
@@ -16,7 +18,7 @@
     <header class="container">
     <div class="row">
         <div class="col-md-6">
-    <h1>Giaffer</h1>
+            <h1>Giaffer <small>{{page}}</small></h1>
         </div>
 
         <div class="col-md-6">
@@ -29,20 +31,20 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <div class="visible-xs" ng-show="firstVisit && page === 'home'">You have not configured your own interests yet. Click on the 'Interests' menu entry to manage them</div>
+                            <div class="visible-xs" ng-show="firstVisit && page === 'search'">You have not configured your own interests yet. Click on the 'Interests' menu entry to manage them</div>
                         </div>
 
                         <nav class="hidden-xs">
                             <ul class="nav navbar-nav">
-                                <li id='popsupport' ui-sref-active="active"><a ui-sref="home">Giaffer search</a></li>
-                                <li ui-sref-active="active" popover-placement="bottom" popover="You have not configured your own interests yet. Click above to manage them" popover-toggle="firstVisit && page === 'home'" popover-trigger="manual"><a ui-sref="interests">Interests</a></li>
+                                <li id='popsupport' ui-sref-active="active"><a ui-sref="home">Search</a></li>
+                                <li ui-sref-active="active" popover-placement="bottom" popover="You have not configured your own interests yet. Click above to manage them" popover-toggle="loaded && firstVisit && page === 'search'" popover-trigger="manual"><a ui-sref="interests">Interests</a></li>
                                 <li><a ng-click="openSettings()">Settings</a></li>
                                 <li><a  ng-click="openAbout()">About</a></li>
                             </ul>
                         </nav>
                         <nav class="visible-xs" collapse="!isCollapsed">
                             <ul class="nav navbar-nav" ng-show="isCollapsed">
-                                <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Home</a></li>
+                                <li ui-sref-active="active"><a ui-sref="home" ng-click="isCollapsed = !isCollapsed">Search</a></li>
                                 <li ui-sref-active="active"><a ui-sref="interests" ng-click="isCollapsed = !isCollapsed">Interests <span class="badge pull-right">{{interests.length}}</span></a></li>
                                 <li ui-sref-active="active"><a ui-sref="settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
                                 <li ui-sref-active="active"><a ui-sref="about" ng-click="isCollapsed = !isCollapsed">About</a></li>
@@ -56,7 +58,7 @@
     </header>
 <div role="main" id="main">
     <div class="container">
-        <div ui-view="main" class="flip"></div>
+        <div ui-view="main" autoscroll="false"></div>
     </div>
 </div>
 </div>

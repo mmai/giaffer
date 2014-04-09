@@ -20,7 +20,7 @@ html, body {
 }
 
 section {
-    h2 {
+    h2, h3 {
         margin-top: 0px;
         line-height: 0.6;
     }
@@ -32,33 +32,13 @@ nav, .alert {
     }
 }
 
-.container {
-    /* -moz, -o- prefexies are skipped */
-    -webkit-transition: -webkit-transform 1s;
-    -webkit-perspective: 600px;
-
-    .flip {
-        -webkit-transform-style: preserve-3d;
-        -webkit-backface-visibility: hidden;
-        -webkit-transition: all 1s ease-in-out;
-    }
-    .flip.ng-enter {
-        -webkit-transform: rotateY(-180deg);
-    }
-    .flip.ng-enter-active {
-        -webkit-transform: rotateY(0deg);
-    }
-    .flip.ng-leave {
-        -webkit-transform: rotateY(0deg);
-    }
-    .flip.ng-leave-active {
-        -webkit-transform: rotateY(180deg);
-    }
-}
-
 // bootswatch theme overrides
 .btn-toolbar {
     .btn, .btn-group, .input-group {
         margin-left: 0px;
     }
 }
+.navbar-default {
+    background-color: transparent;
+}
+

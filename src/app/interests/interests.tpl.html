@@ -1,5 +1,4 @@
 <section class="interests" ng-controller="InterestsCtrl">
-        <h3>Manage your interests</h3>
     <div class="row-fluid">
         <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
             <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;&nbsp;
@@ -18,7 +17,7 @@
                 </span>
             </div><!-- /input-group -->
         </form>
-        <table class="table table-striped table-bordered table-condensed table-hover">
+        <table class="table table-bordered table-condensed table-hover">
             <tr ng-show="interests.length > 0">
                 <th>Name</th>
                 <th>Search request *</th>
