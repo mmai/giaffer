@@ -45,6 +45,7 @@ angular.module('ngGiaffer.home', [
 
             $rootScope.$watchCollection('settings', function(newSettings, oldSettings){
                     Giaffer.setEngine(newSettings.searchEngine);
+                    Giaffer.setNbTerms(newSettings.nbTerms);
                     $scope.newterms();
                 });
 

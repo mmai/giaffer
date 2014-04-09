@@ -103,6 +103,10 @@
                 var that = this;
                 that.makeSearchUrl = searchEngines[engine].makeSearchUrl;
             },
+            setNbTerms: function(nbTerms){
+                var that = this;
+                that.options.nbTerms = nbTerms;
+            },
             makeSearchUrl: searchEngines.google.makeSearchUrl
         };
 
