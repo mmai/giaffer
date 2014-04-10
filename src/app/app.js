@@ -6,6 +6,7 @@ angular.module('ngGiaffer', [
     'ngGiaffer.home',
     'ngGiaffer.interests',
     'ngGiaffer.settings',
+    'ngGiaffer.settingsServiceModule',
     'ngGiaffer.about',
     'ngGiaffer.ngKeyPressModule',
     'ui.router',
@@ -13,37 +14,38 @@ angular.module('ngGiaffer', [
 //    , 'ngAnimate'
 ])
 
-.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
+.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, defaults) {
+            $urlRouterProvider.otherwise('/');
+            // Please enable mod rewrite in server.js when html5Mode is enabled.
+            // $locationProvider.html5Mode(true);
 
-    $urlRouterProvider.otherwise('/');
-    // Please enable mod rewrite in server.js when html5Mode is enabled.
-    // $locationProvider.html5Mode(true);
 
+            /*
+             Make a trailing slash optional for all routes
+             */
+            $urlRouterProvider.rule(function ($injector, $location) {
+                    var path = $location.path(),
+                    search = $location.search(),
+                    params;
 
-    /*
-    Make a trailing slash optional for all routes
-     */
-    $urlRouterProvider.rule(function ($injector, $location) {
-        var path = $location.path(),
-            search = $location.search(),
-            params;
+                    if (path[path.length - 1] === '/') {
+                        return;
+                    }
 
-        if (path[path.length - 1] === '/') {
-            return;
-        }
+                    if (!Object.keys(search).length) {
+                        return path + '/';
+                    }
 
-        if (!Object.keys(search).length) {
-            return path + '/';
-        }
+                    params = [];
+                    angular.forEach(search, function (v, k) {
+                            params.push(k + '=' + v);
+                        });
 
-        params = [];
-        angular.forEach(search, function (v, k) {
-            params.push(k + '=' + v);
-        });
+                    return path + '/?' + params.join('&');
+                });
 
-        return path + '/?' + params.join('&');
-    });
-})
+            $settingsProvider.setDefaults(defaults);
+}])
 
 .controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults',
         function ($rootScope, $scope, $florm, $modal, defaults) {
@@ -87,10 +89,11 @@ angular.module('ngGiaffer', [
                     });
             }  
 
-            setDefaults($florm, defaults);
-
-            var Settings = $florm('settings');
-            $rootScope.settings = Settings.all()[0];
+            var State = $florm('state');
+            if (State.all().length === 0){
+                var defaultState = State.new({firstVisit:true});
+                defaultState.save();
+            }
 
             $rootScope.checkFirstVisit($florm);
             angular.element(document).ready(function () {
@@ -98,19 +101,7 @@ angular.module('ngGiaffer', [
                 });
         }]);
 
-function setDefaults($florm, defaults){
-    var Settings = $florm('settings');
-    if (Settings.all().length === 0){
-        var defaultSettings = Settings.new(defaults.settings);
-        defaultSettings.save();
-    }
 
-    var State = $florm('state');
-    if (State.all().length === 0){
-        var defaultState = State.new({firstVisit:true});
-        defaultState.save();
-    }
-}
 
 function interestsEquals(a, b){
     if (a.length !== b.length) return false;

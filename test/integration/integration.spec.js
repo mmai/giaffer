@@ -1,7 +1,7 @@
 expect = chai.expect;
 
 describe( 'Integration of Giaffer', function() {
-        app = $('');
+        var = app = $('');
 
         
         beforeEach(module('ngGiaffer'));
@@ -10,7 +10,8 @@ describe( 'Integration of Giaffer', function() {
                     html = '<div ng-app="ngGiaffer"><div ng-view></div>';
                     html += $templateCache.get('home/home.tpl.html');
                     html += "</div>";
-                    app = $compile(html)($rootScope.$new());
+                    var templateFunc = $compile(html);
+                    app = templateFunc($rootScope.$new());
                     $rootScope.$digest();
                 }));
 

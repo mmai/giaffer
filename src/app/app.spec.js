@@ -1,6 +1,11 @@
 expect = chai.expect;
 
 describe( 'AppCtrl', function() {
+        describe('setDefaults', function(){
+                beforeEach(module( 'ngGiaffer' ) );
+
+            });
+
         describe( 'isCurrentUrl', function() {
                 var AppCtrl, $location, $scope;
 

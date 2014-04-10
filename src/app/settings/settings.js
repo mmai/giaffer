@@ -23,26 +23,21 @@ angular.module('ngGiaffer.settings', [
 }])
 //*/
 
-.controller('SettingsCtrl', ['$scope','$rootScope', '$florm', '$modalInstance', function SettingsCtrl($scope, $rootScope, $florm, $modalInstance){
-            function updateSetting(name, value){
-                $rootScope.settings[name] = value;
-                $rootScope.settings.save();
-            }
-
+.controller('SettingsCtrl', ['$scope','$rootScope', '$florm', '$modalInstance', '$settings', function SettingsCtrl($scope, $rootScope, $florm, $modalInstance, $settings){
             $scope.searchEngines = Object.getOwnPropertyNames(window.searchEngines);
-            $scope.searchEngine = $rootScope.settings.searchEngine;
+            $scope.searchEngine = $settings.get('searchEngine');
             $scope.updateSearchEngine = function(searchEngine){
-                updateSetting('searchEngine', searchEngine);
+                $settings.set('searchEngine', searchEngine);
             };
 
-            $scope.nbTerms = $rootScope.settings.nbTerms;
+            $scope.nbTerms = $settings.get('nbTerms');
             $scope.updateNbTerms = function(nbTerms){
-                updateSetting('nbTerms', nbTerms);
+                $settings.set('nbTerms', nbTerms);
             };
 
-            $scope.csstheme = $rootScope.settings.csstheme;
+            $scope.csstheme = $settings.get('csstheme');
             $scope.switchTheme = function(csstheme){
-                updateSetting('csstheme', csstheme);
+                $settings.set('csstheme', csstheme);
             };
 
         }])

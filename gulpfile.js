@@ -196,13 +196,18 @@ gulp.task('html', ['html:replace'], function () {
 
 //  *** Unit tests *****
 var testFiles = [
+    //test libs and utils
     'node_modules/chai/chai.js',
+    'vendor/jquery/dist/jquery.js',
+    //vendor libs
+    config.build + '/vendor/angular/angular.js',//must be called first
     config.build + '/vendor/**/*.js',
     'vendor/angular-mocks/angular-mocks.js',
-    'vendor/jquery/dist/jquery.js',
+    //app components
     config.build + '/+(app|common)/**/*.js',
+    //Specs
     config.paths.tests,
-    config.test + '/integration/**/*.spec.js',//Integration tests => à faire dans protractor ?
+//    config.test + '/integration/**/*.spec.js',//Integration tests => à faire dans protractor ?
 ];
 
 gulp.task('test:run', ['vendor:assets'], function() {

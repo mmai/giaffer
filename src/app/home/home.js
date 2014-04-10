@@ -24,14 +24,15 @@ angular.module('ngGiaffer.home', [
         '$scope',
         '$rootScope',
         '$florm',
-        function($scope, $rootScope, $florm){
+        '$settings',
+        function($scope, $rootScope, $florm, $settings){
             var Interests = $florm('interests');
             var State = $florm('state');
             var state = State.all()[0];
 
             var giafferOptions = {
-                searchEngine: $rootScope.settings.searchEngine,
-                nbTerms: $rootScope.settings.nbTerms
+                searchEngine: $settings.searchEngine,
+                nbTerms: $settings.nbTerms
             };
 
             var Giaffer = new window.Giaffer(giafferOptions, Interests.all());
@@ -43,10 +44,14 @@ angular.module('ngGiaffer.home', [
                 $scope.search = Giaffer.search();
             };
 
-            $rootScope.$watchCollection('settings', function(newSettings, oldSettings){
-                    Giaffer.setEngine(newSettings.searchEngine);
-                    Giaffer.setNbTerms(newSettings.nbTerms);
-                    $scope.newterms();
+            $scope.$on('settings:set', function(event, data){
+                    if (data.name === 'searchEngine'){
+                        Giaffer.setEngine($settings.get('searchEngine'));
+                        $scope.newterms();
+                    } else if (data.name === 'nbTerms') {
+                        Giaffer.setNbTerms($settings.get('nbTerms'));
+                        $scope.newterms();
+                    }
                 });
 
             if (state.firstVisit){
