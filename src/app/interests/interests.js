@@ -2,8 +2,8 @@
 
 angular.module('ngGiaffer.interests', [
     'ngGiaffer.ngReallyClickModule',
-    'ui.router',
-    'ngFlorm'
+    'ngGiaffer.interestServiceModule',
+    'ui.router'
 ])
 
 .config(['$stateProvider', function ($stateProvider) {
@@ -23,11 +23,10 @@ angular.module('ngGiaffer.interests', [
 .controller('InterestsCtrl', [
         '$scope',
         '$rootScope',
-        '$florm',
-        function($scope, $rootScope, $florm){
+        '$interests',
+        function($scope, $rootScope, $interests){
 
-            var Interests = $florm('interests');
-            $scope.interests = Interests.all();
+            $scope.interests = $interests.all();
             $rootScope.page = 'interests';
 
             $scope.deletedInterest = null;
@@ -39,11 +38,7 @@ angular.module('ngGiaffer.interests', [
 
             $scope.addInterest = function(){
                 if ($scope.newinterest.name){
-                    var newinterest = Interests.new({
-                            name:$scope.newinterest.name,
-                            searchString:'"' + $scope.newinterest.name + '"',
-                        });
-                    newinterest.save();
+                    var newinterest = $interests.add($scope.newinterest.name, '"' + $scope.newinterest.name + '"');
                     $scope.newinterest = {};
                     $scope.interests.push(newinterest);
                 }
@@ -55,7 +50,7 @@ angular.module('ngGiaffer.interests', [
             };
 
             $scope.cancelEditInterest = function(interest){
-                var dbinterest = Interests.find(interest.id);
+                var dbinterest = $interests.find(interest.id);
                 interest.name = dbinterest.name;
                 interest.searchString = dbinterest.searchString;
                 interest.editMode = false;
@@ -63,13 +58,13 @@ angular.module('ngGiaffer.interests', [
 
             $scope.deleteInterest = function(interest){
                 $scope.deletedInterest = interest;
-                Interests.delete(interest.id);
-                $scope.interests = Interests.all();
+                $interests.delete(interest.id);
+                $scope.interests = $interests.all();
             };
 
             $scope.undoDeleteInterest = function(){
                 $scope.deletedInterest.save();
-                $scope.interests = Interests.all();
+                $scope.interests = $interests.all();
                 $scope.closeUndoDelete();
             };
 

@@ -6,15 +6,16 @@ angular.module('ngGiaffer', [
     'ngGiaffer.home',
     'ngGiaffer.interests',
     'ngGiaffer.settings',
-    'ngGiaffer.settingsServiceModule',
     'ngGiaffer.about',
+    'ngGiaffer.settingsServiceModule',
+    'ngGiaffer.appStateServiceModule',
     'ngGiaffer.ngKeyPressModule',
     'ui.router',
     'ui.bootstrap'
 //    , 'ngAnimate'
 ])
 
-.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, defaults) {
+.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', '$appStateProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, $appStateProvider, defaults) {
             $urlRouterProvider.otherwise('/');
             // Please enable mod rewrite in server.js when html5Mode is enabled.
             // $locationProvider.html5Mode(true);
@@ -45,10 +46,11 @@ angular.module('ngGiaffer', [
                 });
 
             $settingsProvider.setDefaults(defaults);
+            $appStateProvider.setDefaults({firstVisit:false});
 }])
 
-.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings',
-        function ($rootScope, $scope, $florm, $modal, defaults, $settings) {
+.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings', '$appState',
+        function ($rootScope, $scope, $florm, $modal, defaults, $settings, $appState) {
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                     if (angular.isDefined(toState.data.pageTitle)) {
                         $scope.pageTitle = toState.data.pageTitle + ' | Giaffer';
@@ -62,9 +64,7 @@ angular.module('ngGiaffer', [
                 });
 
             $rootScope.checkFirstVisit = function($florm){
-                var State = $florm('state');
-                var state = State.all()[0];
-                if (state.firstVisit){
+                if ($appState.get('firstVisit')){
                     var Interests = $florm('interests');
 
                     if (Interests.all().length === 0){
@@ -73,12 +73,11 @@ angular.module('ngGiaffer', [
                         }
                     } else {
                         if (!interestsEquals(Interests.all(), defaults.interests)){
-                            state.firstVisit = false;
-                            state.save();
+                            $appState.set('firstVisit', false);
                         }
                     }
                 }
-                this.firstVisit = state.firstVisit;
+                this.firstVisit = $appState.get('firstVisit');
             };
 
             $scope.openSettings = function(){
