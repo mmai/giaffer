@@ -47,11 +47,17 @@ angular.module('ngGiaffer', [
             $settingsProvider.setDefaults(defaults);
 }])
 
-.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults',
-        function ($rootScope, $scope, $florm, $modal, defaults) {
+.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings',
+        function ($rootScope, $scope, $florm, $modal, defaults, $settings) {
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                     if (angular.isDefined(toState.data.pageTitle)) {
                         $scope.pageTitle = toState.data.pageTitle + ' | Giaffer';
+                    }
+                });
+
+            $scope.$on('settings:set', function(event, data){
+                    if (data.name === 'csstheme'){
+                        $scope.csstheme = $settings.get('csstheme');
                     }
                 });
 
@@ -94,6 +100,8 @@ angular.module('ngGiaffer', [
                 var defaultState = State.new({firstVisit:true});
                 defaultState.save();
             }
+
+            $scope.csstheme = $settings.get('csstheme');
 
             $rootScope.checkFirstVisit($florm);
             angular.element(document).ready(function () {

@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 angular.module('ngGiaffer.home', [
     'ui.router',
     'ngFlorm'
@@ -59,5 +61,7 @@ angular.module('ngGiaffer.home', [
                         $rootScope.checkFirstVisit($florm);
                     });
             }
+
+            $scope.newterms();
         }
     ]);
