@@ -56,12 +56,6 @@ angular.module('ngGiaffer.home', [
                     }
                 });
 
-            if (state.firstVisit){
-                $rootScope.$watchCollection('Interests', function(newi, oldi){
-                        $rootScope.checkFirstVisit($florm);
-                    });
-            }
-
             $scope.newterms();
         }
     ]);

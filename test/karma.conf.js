@@ -1,6 +1,6 @@
 module.exports = function(config) {
     config.set({
-            frameworks: ['mocha'],
+            frameworks: ['mocha', 'sinon-chai'],
 
             /** This section is not needed when karma is started by gulp **/
             // list of files / patterns to load in the browser

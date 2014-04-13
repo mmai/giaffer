@@ -17,7 +17,7 @@ angular.module('ngGiaffer.settingsServiceModule', [])
             //due to angular inability to inject services in configuration blocs)
             if (Settings === null){
                 Settings = florm('settings');
-                var defaultSettings = Settings.new(defaults.settings);
+                var defaultSettings = Settings.new(defaults);
                 defaultSettings.save();
             }
 

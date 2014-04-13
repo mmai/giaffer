@@ -17,7 +17,7 @@ angular.module('ngGiaffer.appStateServiceModule', [])
             //due to angular inability to inject services in configuration blocs)
             if (AppState === null){
                 AppState = florm('state');
-                var defaultState = AppState.new(defaults.state);
+                var defaultState = AppState.new(defaults);
                 defaultState.save();
             }
 

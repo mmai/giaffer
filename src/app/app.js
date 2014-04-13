@@ -9,13 +9,14 @@ angular.module('ngGiaffer', [
     'ngGiaffer.about',
     'ngGiaffer.settingsServiceModule',
     'ngGiaffer.appStateServiceModule',
+    'ngGiaffer.interestServiceModule',
     'ngGiaffer.ngKeyPressModule',
     'ui.router',
     'ui.bootstrap'
 //    , 'ngAnimate'
 ])
 
-.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', '$appStateProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, $appStateProvider, defaults) {
+.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', '$appStateProvider', '$interestsProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, $appStateProvider, $interestsProvider, defaults) {
             $urlRouterProvider.otherwise('/');
             // Please enable mod rewrite in server.js when html5Mode is enabled.
             // $locationProvider.html5Mode(true);
@@ -45,12 +46,28 @@ angular.module('ngGiaffer', [
                     return path + '/?' + params.join('&');
                 });
 
-            $settingsProvider.setDefaults(defaults);
+            $settingsProvider.setDefaults(defaults.settings);
+            $interestsProvider.setDefaults(defaults.interests);
             $appStateProvider.setDefaults({firstVisit:false});
 }])
 
-.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings', '$appState',
-        function ($rootScope, $scope, $florm, $modal, defaults, $settings, $appState) {
+.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings', '$appState', '$interests',
+        function ($rootScope, $scope, $florm, $modal, defaults, $settings, $appState, $interests) {
+            $rootScope.checkFirstVisit = function(){
+                if ($appState.get('firstVisit') && !$interests.isDefaults()){
+                    console.log('setting fistvisit to false');
+                    $appState.set('firstVisit', false);
+
+                    console.log($appState.get('firstVisit'));
+                }
+                $scope.firstVisit = $appState.get('firstVisit');
+                console.log($appState.get('firstVisit'));
+            };
+
+            $scope.$on('interests:add', function(event, data){
+                   $rootScope.checkFirstVisit();
+               });
+
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                     if (angular.isDefined(toState.data.pageTitle)) {
                         $scope.pageTitle = toState.data.pageTitle + ' | Giaffer';
@@ -62,23 +79,6 @@ angular.module('ngGiaffer', [
                         $scope.csstheme = $settings.get('csstheme');
                     }
                 });
-
-            $rootScope.checkFirstVisit = function($florm){
-                if ($appState.get('firstVisit')){
-                    var Interests = $florm('interests');
-
-                    if (Interests.all().length === 0){
-                        for (var i=0, len=defaults.interests.length;i<len;i++){
-                            Interests.new(defaults.interests[i]).save();
-                        }
-                    } else {
-                        if (!interestsEquals(Interests.all(), defaults.interests)){
-                            $appState.set('firstVisit', false);
-                        }
-                    }
-                }
-                this.firstVisit = $appState.get('firstVisit');
-            };
 
             $scope.openSettings = function(){
                 $modal.open({
@@ -102,7 +102,7 @@ angular.module('ngGiaffer', [
 
             $scope.csstheme = $settings.get('csstheme');
 
-            $rootScope.checkFirstVisit($florm);
+            $rootScope.checkFirstVisit();
             angular.element(document).ready(function () {
                     $rootScope.loaded = true;
                 });
@@ -110,26 +110,3 @@ angular.module('ngGiaffer', [
 
 
 
-function interestsEquals(a, b){
-    if (a.length !== b.length) return false;
-
-    a = arr2Obj(a, 'name', 'searchString');
-    b = arr2Obj(b, 'name', 'searchString');
-
-    var names = a.keys;
-    var name;
-    for (var i = 0, len = names; i < len; i++){
-        name = names[i];
-        if (b[name] !== a[name]) return false;
-    }
-
-    return true;
-}
-
-function arr2Obj(arr, key, val){
-    var obj = {};
-    for (var i=0, len=arr.length;i<len;i++){
-        obj[arr[i][key]] = arr[i][val];
-    }
-    return obj;
-}
