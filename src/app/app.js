@@ -51,17 +51,14 @@ angular.module('ngGiaffer', [
             $appStateProvider.setDefaults({firstVisit:false});
 }])
 
-.controller('AppCtrl', ['$rootScope', '$scope', '$florm', '$modal', 'defaults', '$settings', '$appState', '$interests',
-        function ($rootScope, $scope, $florm, $modal, defaults, $settings, $appState, $interests) {
+.controller('AppCtrl', ['$rootScope', '$scope', '$modal', 'defaults', '$settings', '$appState', '$interests',
+        function ($rootScope, $scope, $modal, defaults, $settings, $appState, $interests) {
             $rootScope.checkFirstVisit = function(){
-                if ($appState.get('firstVisit') && !$interests.isDefaults()){
-                    console.log('setting fistvisit to false');
-                    $appState.set('firstVisit', false);
-
-                    console.log($appState.get('firstVisit'));
-                }
                 $scope.firstVisit = $appState.get('firstVisit');
-                console.log($appState.get('firstVisit'));
+                if ($scope.firstVisit && !$interests.isDefaults()){
+                    $scope.firstVisit = false;
+                    $appState.set('firstVisit', $scope.firstVisit);
+                }
             };
 
             $scope.$on('interests:add', function(event, data){
@@ -93,12 +90,6 @@ angular.module('ngGiaffer', [
                         templateUrl: "about/about.tpl.html",
                     });
             }  
-
-            var State = $florm('state');
-            if (State.all().length === 0){
-                var defaultState = State.new({firstVisit:true});
-                defaultState.save();
-            }
 
             $scope.csstheme = $settings.get('csstheme');
 

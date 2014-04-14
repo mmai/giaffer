@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngGiaffer.appStateServiceModule', [])
+angular.module('ngGiaffer.appStateServiceModule', ['ngFlorm'])
 
 .provider('$appState', function() {
         var AppState = null;

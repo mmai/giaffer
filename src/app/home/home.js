@@ -2,10 +2,7 @@
 
 
 
-angular.module('ngGiaffer.home', [
-    'ui.router',
-    'ngFlorm'
-])
+angular.module('ngGiaffer.home', ['ui.router'])
 
 .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state('home', {
@@ -25,21 +22,18 @@ angular.module('ngGiaffer.home', [
 .controller('HomeCtrl', [
         '$scope',
         '$rootScope',
-        '$florm',
+        '$interests',
         '$settings',
-        function($scope, $rootScope, $florm, $settings){
-            var Interests = $florm('interests');
-            var State = $florm('state');
-            var state = State.all()[0];
+        function($scope, $rootScope, $interests, $settings){
 
             var giafferOptions = {
-                searchEngine: $settings.searchEngine,
-                nbTerms: $settings.nbTerms
+                searchEngine: $settings.get('searchEngine'),
+                nbTerms: $settings.get('nbTerms')
             };
 
-            var Giaffer = new window.Giaffer(giafferOptions, Interests.all());
+            var Giaffer = new window.Giaffer(giafferOptions, $interests.all());
 
-            $scope.nbInterests = Interests.all().length;
+            $scope.nbInterests = $interests.all().length;
             $rootScope.page = 'search';
 
             $scope.newterms = function (){

@@ -5,6 +5,7 @@ describe( 'AppCtrl', function() {
         var appState = {firstVisit:true};
 
         beforeEach( module( 'ngGiaffer' ) );
+        beforeEach( module( 'ngFlorm' ) );
 
         beforeEach(inject(function($florm){
                     $florm('interests').truncate();
@@ -51,17 +52,12 @@ describe( 'AppCtrl', function() {
                         var $interests = $injector.get('$interests');
                         var $appState = $injector.get('$appState');
                         expect($interests.isDefaults(), 'initial isDefaults').to.be.true;
-
                         sinon.spy($interests, 'isDefaults');
                         $interests.add('Angular', '"Angular.js"|"Angularjs"');
                         $interests.isDefaults.should.have.been.called
-
                         expect($interests.isDefaults(), 'isDefaults').to.be.false;
-
                         expect($appState.get('firstVisit'), 'appState.firstVisit').to.be.false;
                         expect($scope.firstVisit, 'scope.firstVisit').to.be.false;
-
-
                     })
             })
 

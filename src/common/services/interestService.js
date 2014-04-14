@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngGiaffer.interestServiceModule', [])
+angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
 
 .provider('$interests', function() {
         var Interests = null;

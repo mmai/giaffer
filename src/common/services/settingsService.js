@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngGiaffer.settingsServiceModule', [])
+angular.module('ngGiaffer.settingsServiceModule', ['ngFlorm'])
 
 .provider('$settings', function() {
         var Settings = null;
