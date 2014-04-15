@@ -33,12 +33,16 @@ nav, .alert {
 }
 
 // bootswatch theme overrides
+.btn {
+    padding: 8px 12px;
+}
+
 .btn-toolbar {
     .btn, .btn-group, .input-group {
         margin-left: 0px;
     }
 }
-.navbar-default {
-    background-color: transparent;
-}
+//.navbar-default {
+//    background-color: transparent;
+//}
 

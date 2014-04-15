@@ -16,7 +16,7 @@
 <div id="wrap">
     <header class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="hidden-xs col-md-6">
             <h1>Giaffer <small>{{page}}</small></h1>
         </div>
 
@@ -30,10 +30,11 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
+                            <a class="navbar-brand visible-xs" href="#">Giaffer</a>
                             <div class="visible-xs" ng-show="firstVisit && page === 'search'">You have not configured your own interests yet. Click on the 'Interests' menu entry to manage them</div>
                         </div>
 
-                        <nav class="hidden-xs">
+                        <nav class="hidden-xs text-center">
                             <ul class="nav navbar-nav">
                                 <li id='popsupport' ui-sref-active="active"><a ui-sref="home">Search</a></li>
                                 <li ui-sref-active="active" popover-placement="bottom" popover="You have not configured your own interests yet. Click above to manage them" popover-toggle="loaded && firstVisit && page === 'search'" popover-trigger="manual"><a ui-sref="interests">Interests</a></li>

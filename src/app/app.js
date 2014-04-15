@@ -48,7 +48,7 @@ angular.module('ngGiaffer', [
 
             $settingsProvider.setDefaults(defaults.settings);
             $interestsProvider.setDefaults(defaults.interests);
-            $appStateProvider.setDefaults({firstVisit:false});
+            $appStateProvider.setDefaults({firstVisit:true});
 }])
 
 .controller('AppCtrl', ['$rootScope', '$scope', '$modal', 'defaults', '$settings', '$appState', '$interests',
