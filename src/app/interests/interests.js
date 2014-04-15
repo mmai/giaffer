@@ -15,7 +15,8 @@ angular.module('ngGiaffer.interests', [
             }
         },
         data: {
-            pageTitle: 'Interests'
+            pageTitle: 'Interests',
+            pagename: 'interests'
         }
     })
 }])
@@ -27,7 +28,6 @@ angular.module('ngGiaffer.interests', [
         function($scope, $rootScope, $interests){
 
             $scope.interests = $interests.all();
-            $rootScope.page = 'interests';
 
             $scope.deletedInterest = null;
             $scope.newinterest = {name: '', searchString: ''};

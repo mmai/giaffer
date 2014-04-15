@@ -11,18 +11,19 @@ angular.module('ngGiaffer.settings', [
         url: '/settings/'
        ,views: {
             "main": {
-                templateUrl: 'settings/settingsMin.tpl.html',
-                controller: 'SettingsMinCtrl'
+                templateUrl: 'settings/settings.tpl.html',
+                controller: 'SettingsCtrl'
             }
         }
         ,data: {
-            pageTitle: 'Settings'
+            pageTitle: 'Settings',
+            pagename: 'settings'
         }
     })
 }])
 //*/
 
-.controller('SettingsCtrl', ['$scope','$rootScope', '$modalInstance', '$settings', function SettingsCtrl($scope, $rootScope, $modalInstance, $settings){
+.controller('SettingsCtrl', ['$scope','$rootScope', '$settings', function SettingsCtrl($scope, $rootScope, $settings){
             $scope.searchEngines = Object.getOwnPropertyNames(window.searchEngines);
             $scope.searchEngine = $settings.get('searchEngine');
             $scope.updateSearchEngine = function(searchEngine){

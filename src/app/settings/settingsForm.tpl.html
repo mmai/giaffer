@@ -1,14 +1,14 @@
 <form class="form-horizontal" role="form">
     <div class="form-group">
-        <label for="searchEngine"  class="col-sm-5 control-label">Search engine</label>
-        <div class="col-sm-7">
+        <label for="searchEngine"  class="col-sm-4 control-label">Search engine</label>
+        <div class="col-sm-3">
             <select ng-model="searchEngine" ng-options="s for s in searchEngines" id="searchEngine" class="form-control" ng-change="updateSearchEngine(searchEngine)">
             </select>
         </div>
     </div>
     <div class="form-group">
-        <label for="nbTerms"  class="col-sm-5 control-label">Number of topics in a search</label>
-        <div class="col-sm-7">
+        <label for="nbTerms"  class="col-sm-4 control-label">Combined topics</label>
+        <div class="col-sm-3">
             <select ng-model="nbTerms" id="nbTerms" class="form-control" ng-change="updateNbTerms(nbTerms)" >
                 <option>2</option>
                 <option>3</option>
@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="csstheme"  class="col-sm-5 control-label">Theme</label>
-        <div class="col-sm-7">
+        <label for="csstheme"  class="col-sm-4 control-label">Theme</label>
+        <div class="col-sm-3">
             <select ng-model="csstheme" id="csstheme" class="form-control" ng-change="switchTheme(csstheme)" >
                 <option>amelia</option>
                 <option>cerulean</option>

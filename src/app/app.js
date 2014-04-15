@@ -68,6 +68,7 @@ angular.module('ngGiaffer', [
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                     if (angular.isDefined(toState.data.pageTitle)) {
                         $scope.pageTitle = toState.data.pageTitle + ' | Giaffer';
+                        $scope.subTitle = toState.data.pageTitle.toLowerCase();
                     }
                 });
 

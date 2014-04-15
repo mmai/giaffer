@@ -14,7 +14,7 @@ angular.module('ngGiaffer.home', ['ui.router'])
             }
         },
         data: {
-            pageTitle: 'Home'
+            pageTitle: 'Search'
         }
     });
 }])
@@ -34,7 +34,6 @@ angular.module('ngGiaffer.home', ['ui.router'])
             var Giaffer = new window.Giaffer(giafferOptions, $interests.all());
 
             $scope.nbInterests = $interests.all().length;
-            $rootScope.page = 'search';
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
