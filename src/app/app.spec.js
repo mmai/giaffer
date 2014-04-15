@@ -14,6 +14,7 @@ describe( 'AppCtrl', function() {
         beforeEach( inject( function( $controller, _$location_, $rootScope, _$injector_) {
 
                     var AppStateServiceMock = { 
+                        appState:{firstVisit:true},
                         get: function (name){
                             return appState[name];
                         },
