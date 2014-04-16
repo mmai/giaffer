@@ -13,7 +13,6 @@ angular.module('ngGiaffer', [
     'ngGiaffer.ngKeyPressModule',
     'ui.router',
     'ui.bootstrap'
-//    , 'ngAnimate'
 ])
 
 .config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$settingsProvider', '$appStateProvider', '$interestsProvider', 'defaults', function ($urlRouterProvider, $locationProvider, $stateProvider, $settingsProvider, $appStateProvider, $interestsProvider, defaults) {
