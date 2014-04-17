@@ -21,6 +21,6 @@ angular.module('ngGiaffer.conf', [])
             {name:"Oulipo", searchString:'"Oulipo"|"Queneau"|"Georges Perec"|"Jacques Roubaud"' },
             {name:"Monty Pythons", searchString:'"Monty Pythons"|"John Cleese"' },
             {name:"Borges", searchString:'"Borges"' },
-            {name:"Proust", searchString:'"Proust"|"à la recherche du temps perdu"' }
+            {name:"Bebop", searchString:'"bebop"|"Dizzy Gillespie"|"Charlie Parker"|"Thelonious Monk"|"John Coltrane"|"Mingus"' }
         ]
     });

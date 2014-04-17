@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('ngGiaffer.interests', [
-    'ngGiaffer.ngReallyClickModule',
     'ngGiaffer.interestServiceModule',
     'ui.router'
 ])

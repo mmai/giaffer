@@ -23,10 +23,17 @@ describe( '$interests', function() {
                 it('should initially return true', function(){
                         expect(interests.isDefaults()).to.be.true;
                     });
-                it('should return false when a interest has been added', function(){
+                it('should return false when an interest has been added', function(){
                         interests.add('interest3', '"interest3"');
+                        expect(interests.isDefaults()).to.be.false;
+                    });
+                it('should return false when an interest has been changed', function(){
+                        interests.delete(interests.find({name: 'interest2'}));
+                        interests.add('interest2', 'new interest 2');
                         expect(interests.isDefaults()).to.be.false;
                     })
             })
+
+        describe
 
     });

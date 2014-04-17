@@ -339,6 +339,7 @@ gulp.task('compile', ['build'], function () {
     gulp.start('styles', 'scripts', 'assets', 'html');
 });
 
-gulp.task('default', function () {
-    gulp.start('compile', 'bootswatch:dist');
+gulp.task('default', ['compile'], function () {
+        //XXX does not work : must be manually started after the 'compile' task
+    gulp.start('bootswatch:dist');
 });

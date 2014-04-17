@@ -64,9 +64,9 @@ angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
             a = arr2Obj(a, 'name', 'searchString');
             b = arr2Obj(b, 'name', 'searchString');
 
-            var names = a.keys;
+            var names = Object.keys(a);
             var name;
-            for (var i = 0, len = names; i < len; i++){
+            for (var i = 0, len = names.length; i < len; i++){
                 name = names[i];
                 if (b[name] !== a[name])  return false;
             }
