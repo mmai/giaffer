@@ -9,6 +9,7 @@ describe( 'AppCtrl', function() {
 
         beforeEach(inject(function($florm){
                     $florm('interests').truncate();
+                    $florm('state').truncate();
                 }));
 
         beforeEach( inject( function( $controller, _$location_, $rootScope, _$injector_) {
@@ -26,7 +27,8 @@ describe( 'AppCtrl', function() {
                     $location = _$location_;
                     $injector = _$injector_;
                     $scope = $rootScope.$new();
-                    AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope, $appState: AppStateServiceMock });
+//                    AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope, $appState: AppStateServiceMock });
+                    AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope});
                 }));
         describe('setDefaults', function(){
                 var appDefaults;
@@ -35,11 +37,6 @@ describe( 'AppCtrl', function() {
                             }));
                 it('should set default csstheme value', function(){
                         expect($scope.csstheme).to.equal(appDefaults.settings.csstheme);
-                    });
-
-                it('should set default interests on first visit', function(){
-//                        console.log(appDefaults.interests);
-
                     });
 
             });

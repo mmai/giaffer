@@ -8,7 +8,7 @@
                     return getGoogleSearchUrl(terms);
                 }
             },
-            googlefr: { name: "google.fr" ,
+            'google.fr': { name: "google.fr" ,
                 makeSearchUrl: function (terms){
                     return getGoogleSearchUrl(terms, 'fr');
                 }
@@ -18,7 +18,7 @@
                     return getBingSearchUrl(terms);
                 }
             },
-            bingfr: { name: "bing.fr" ,
+            'bing.fr': { name: "bing.fr" ,
                 makeSearchUrl: function (terms){
                     return getBingSearchUrl(terms, 'fr');
                 }

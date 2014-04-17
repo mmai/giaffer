@@ -10,7 +10,7 @@ describe( 'HomeCtrl', function() {
                     //mock settings
                     $settings = {
                         get: function(name){return this[name]},
-                        searchEngine: 'googlefr',
+                        searchEngine: 'google.fr',
                         nbTerms: 2
                     }
                     $scope = $rootScope.$new();

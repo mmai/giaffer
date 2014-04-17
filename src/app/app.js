@@ -95,7 +95,7 @@ angular.module('ngGiaffer', [
 
             $rootScope.checkFirstVisit();
             angular.element(document).ready(function () {
-                    $rootScope.loaded = true;
+                    $scope.loaded = true;
                 });
         }]);
 
