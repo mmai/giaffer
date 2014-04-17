@@ -41,8 +41,13 @@ gulp.task('styles', ['styles:sass'], function () {
 // Prepare vendor files
 // ====================
 
+gulp.task('vendor_overrides', function(){
+    return gulp.src('vendor_overrides/**/*', { base: 'vendor_overrides' })
+        .pipe(gulp.dest('vendor'));
+});
+
 // Copy vendor JS files to /build/
-gulp.task('vendor:js', function () {
+gulp.task('vendor:js', ['vendor_overrides'], function () {
     if (!config.vendor_files.js.length) {
         return;
     }
