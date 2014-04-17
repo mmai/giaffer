@@ -8,7 +8,7 @@ In the fairy tale [The Three Princes of Serendip](https://en.wikipedia.org/wiki/
 
 Giaffer is a web implementation of Integrate your Interests, a hack by [Ron Hale Evans](http://ludism.org/tinfoil) from his book Mindhacker.
 
-Try it on (http://mmai.github.io/giaffer)
+Try it on http://mmai.github.io/giaffer
 
 ## Installation
 
