@@ -35,7 +35,7 @@
         };
 
         function getBingSearchUrl(terms, lang){
-            var url = getEngineSearchUrl(terms, 'bing'); 
+            var url = getEngineSearchUrl(terms, 'bing');
             if (lang){
                 url += '&cc='+lang;
             }
@@ -47,9 +47,9 @@
         }
 
         function getEngineSearchUrl(terms, engine, lang){
-            var engine = engine || 'google';
+            var sengine = engine || 'google';
             var langext = lang || 'com';
-            var url = 'http://www.' + engine + '.'+ langext + '/search?q=';
+            var url = 'http://www.' + sengine + '.'+ langext + '/search?q=';
             url += terms.map(function (term){
                     return encodeURIComponent(term);
                 }).join(' ');
@@ -96,7 +96,7 @@
                     terms: searchTerms,
                     url: that.makeSearchUrl(searchTerms),
                     display: searchTerms.join(' ')
-                }
+                };
                 return searchQuery;
             },
             setEngine: function(engine){
@@ -113,7 +113,7 @@
         /******************* utilities */
         function arrayRandomElements(myArray, nbelements){
             var randomArray = myArray.slice(0);
-            randomArray.sort( function() { return 0.5 - Math.random() } );
+            randomArray.sort( function() { return 0.5 - Math.random(); } );
             return randomArray.slice(0, nbelements);
         }
 

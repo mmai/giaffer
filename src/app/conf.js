@@ -19,7 +19,7 @@ angular.module('ngGiaffer.conf', [])
         interests: [
             {name:"Number theory", searchString:'"Number theory"|"prime numbers"|"nombres premiers"' },
             {name:"Oulipo", searchString:'"Oulipo"|"Queneau"|"Georges Perec"|"Jacques Roubaud"' },
-            {name:"Monty Pythons", searchString:'"Monty Pythons"|"John Cleese"' },
+            {name:"Monty Python", searchString:'"Monty Python"|"John Cleese"' },
             {name:"Borges", searchString:'"Borges"' },
             {name:"Bebop", searchString:'"bebop"|"Dizzy Gillespie"|"Charlie Parker"|"Thelonious Monk"|"John Coltrane"|"Mingus"' }
         ]

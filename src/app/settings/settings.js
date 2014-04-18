@@ -8,18 +8,18 @@ angular.module('ngGiaffer.settings', [
 //*
 .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state('settings', {
-        url: '/settings/'
-       ,views: {
+        url: '/settings/',
+        views: {
             "main": {
                 templateUrl: 'settings/settings.tpl.html',
                 controller: 'SettingsCtrl'
             }
-        }
-        ,data: {
+        },
+        data: {
             pageTitle: 'Settings',
             pagename: 'settings'
         }
-    })
+    });
 }])
 //*/
 

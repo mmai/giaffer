@@ -17,7 +17,7 @@ angular.module('ngGiaffer.interests', [
             pageTitle: 'Interests',
             pagename: 'interests'
         }
-    })
+    });
 }])
 
 .controller('InterestsCtrl', [
@@ -69,7 +69,7 @@ angular.module('ngGiaffer.interests', [
 
             $scope.closeUndoDelete = function(){
                 $scope.deletedInterest = null;
-            }
+            };
 
         }]);
 

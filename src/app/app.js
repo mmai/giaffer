@@ -82,14 +82,14 @@ angular.module('ngGiaffer', [
                         controller: 'SettingsCtrl',
                         templateUrl: "settings/settings.tpl.html",
                     });
-            }  
+            };
 
             $scope.openAbout = function(){
                 $modal.open({
                         controller: 'AboutCtrl',
                         templateUrl: "about/about.tpl.html",
                     });
-            }  
+            };
 
             $scope.csstheme = $settings.get('csstheme');
 

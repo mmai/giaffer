@@ -10,17 +10,17 @@ angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
         this.setDefaults = function(defaults, disablePopulate){
             if (defaults) {
                 defaultInterests = defaults;
-            } 
+            }
             if (disablePopulate){
                 populate = false;
             }
         };
 
-        this.$get = function(florm, rootScope) {
+        this.$get = ['$florm', '$rootScope', function($florm, $rootScope) {
             //florm initialisation with defaultInterests (not possible in setDefaults
             //due to angular inability to inject services in configuration blocs)
             if (Interests === null){
-                Interests = florm('interests');
+                Interests = $florm('interests');
 
                 if (Interests.all().length === 0 && populate){
                     for (var i=0, len=defaultInterests.length;i<len;i++){
@@ -36,11 +36,11 @@ angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
                 add: function(name, searchString) {
                     var interest = Interests.new({name:name, searchString: searchString});
                     interest.save();
-                    rootScope.$broadcast('interests:add', {name: name, searchString: searchString});
+                    $rootScope.$broadcast('interests:add', {name: name, searchString: searchString});
                     return interest;
                 },
                 delete: function(id){
-                    rootScope.$broadcast('interests:delete', {id: id});
+                    $rootScope.$broadcast('interests:delete', {id: id});
                     return Interests.delete(id);
                 },
                 truncate: function(){
@@ -54,12 +54,13 @@ angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
                 }
             };
             return service;
-        };
-        this.$get['$inject'] = ['$florm', '$rootScope'];
+        }];
 
         //Utils functions
         function interestsEquals(a, b){
-            if (a.length !== b.length) return false;
+            if (a.length !== b.length) {
+                return false;
+            }
 
             a = arr2Obj(a, 'name', 'searchString');
             b = arr2Obj(b, 'name', 'searchString');
@@ -68,7 +69,9 @@ angular.module('ngGiaffer.interestServiceModule', ['ngFlorm'])
             var name;
             for (var i = 0, len = names.length; i < len; i++){
                 name = names[i];
-                if (b[name] !== a[name])  return false;
+                if (b[name] !== a[name]) {
+                    return false;
+                }
             }
 
             return true;

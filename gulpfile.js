@@ -120,10 +120,13 @@ gulp.task('scripts', ['scripts:lint', 'scripts:html2js', 'vendor:js'], function 
     return gulp.src(arr)
         .pipe(plugins.concat('main.js'))
         .pipe(plugins.bytediff.start())
-//        .pipe(plugins.ngmin())
-//        .pipe(plugins.uglify())
-//        .pipe(plugins.removelogs())
+        .pipe(plugins.ngmin())
         .pipe(plugins.rename({ suffix: '.min' }))
+        .pipe(plugins.removelogs())
+        .pipe(plugins.uglify({
+                    mangle:false,//'true' generate a erroneous minified js
+//                    outSourceMap:true,
+                }))
         .pipe(plugins.bytediff.stop())
         .pipe(gulp.dest(config.dist + '/assets'));
 });

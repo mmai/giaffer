@@ -9,21 +9,23 @@ angular.module('ngGiaffer.appStateServiceModule', ['ngFlorm'])
         this.setDefaults = function(def){
             if (def) {
                 defaults = def;
-            } 
+            }
         };
 
-        this.$get = function(florm, rootScope) { // injectables go here
+        this.$get = ['$florm', '$rootScope', function($florm, $rootScope) { // injectables go here
             //florm initialisation with defaults (not possible in setDefaults
             //due to angular inability to inject services in configuration blocs)
             if (AppState === null){
-                AppState = florm('state');
+                AppState = $florm('state');
                 var defaultState = AppState.new(defaults);
                 defaultState.save();
             }
 
             var self = this;
             var allState = AppState.all();
-            if (allState.length === 0) throw "Default state not set";
+            if (allState.length === 0) {
+                throw "Default state not set";
+            }
             var appState = allState[0];
             var service = {
                 get: function(name){
@@ -32,10 +34,9 @@ angular.module('ngGiaffer.appStateServiceModule', ['ngFlorm'])
                 set: function(name, value) {
                     appState[name] = value;
                     appState.save();
-                    rootScope.$broadcast('appState:set', {name: name, value: value});
+                    $rootScope.$broadcast('appState:set', {name: name, value: value});
                 }
             };
             return service;
-        };
-        this.$get['$inject'] = ['$florm', '$rootScope'];
+        }];
     });
