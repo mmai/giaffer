@@ -17,10 +17,12 @@ angular.module('ngGiaffer.appStateServiceModule', ['ngFlorm'])
             //due to angular inability to inject services in configuration blocs)
             if (AppState === null){
                 AppState = $florm('state');
-                var defaultState = AppState.new(defaults);
-                defaultState.save();
+                if (AppState.all().length === 0){
+                    var defaultState = AppState.new(defaults);
+                    defaultState.save();
+                }
             }
-
+            
             var self = this;
             var allState = AppState.all();
             if (allState.length === 0) {

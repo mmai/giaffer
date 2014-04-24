@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-csp ng-app="ngGiaffer.popup" ng-controller="PopupCtrl">
+    <head>
+        <link href="assets/main.css" rel="stylesheet">
+        <link href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet">
+
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-florm/lib/angular-florm.js"></script>
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/lodash/dist/lodash.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<script src="app/conf.js"></script>
+<script src="app/lib/Giaffer.js"></script>
+<script src="common/services/interestService.js"></script>
+<script src="common/services/settingsService.js"></script>
+
+        <script src="app/popup/popup.js"></script>
+        <style>
+.ng-hide {
+    display:none;
+}
+
+    .jumbotron {
+        margin-top: 60px;
+        text-align: center;
+        .btn {
+            margin-top: 10px;
+        }
+    }
+
+    .interest {
+        font-size: 110%;
+        font-weight:bold;
+        font-style:italic;
+    }
+
+
+        </style>
+    </head>
+    <body>
+    <a href="interests.html">Manage interestService</a>
+                <div class="jumbotron">
+            <p>What about searching for <br> 
+        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
+        </p>
+        <p>
+        <a class="btn btn-default btn-lg" ng-click='newterms()'>
+            <span class="glyphicon glyphicon-refresh"></span> Pick others
+        </a> 
+        <a id='search' class="btn btn-primary btn-lg" role="button" href="{{search.url}}" target="_blank">
+                <span class="glyphicon glyphicon-search"></span> Let's search that !
+            </a>
+        </p>
+        </div>
+    </body>
+</html>

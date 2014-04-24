@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-csp ng-app="ngGiaffer.options" ng-controller="OptionsCtrl">
+    <head>
+        <link href="assets/main.css" rel="stylesheet">
+        <link href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet">
+
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/angular-florm/lib/angular-florm.js"></script>
+<script src="vendor/lodash/dist/lodash.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<script src="app/conf.js"></script>
+<script src="app/lib/Giaffer.js"></script>
+<script src="common/services/interestService.js"></script>
+<script src="common/services/settingsService.js"></script>
+
+        <script src="app/options/options.js"></script>
+    </head>
+    <body>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="searchEngine"  class="col-sm-4 control-label">Search engine</label>
+        <div class="col-sm-3">
+            <select ng-model="searchEngine" ng-options="s for s in searchEngines" id="searchEngine" class="form-control" ng-change="updateSearchEngine(searchEngine)">
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nbTerms"  class="col-sm-4 control-label">Combined topics</label>
+        <div class="col-sm-3">
+            <select ng-model="nbTerms" id="nbTerms" class="form-control" ng-change="updateNbTerms(nbTerms)" >
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+    </div>
+    </form>
+    </body>
+</html>

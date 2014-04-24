@@ -35,6 +35,15 @@
         ]
     },
 
+    "chrome_files": [
+        "src/manifest.json",
+        "src/popup.html",
+        "src/options.html",
+        "src/interests.html",
+        "src/images/*",
+        "src/_locales/**/*"
+    ],
+
     "bootstrap": {
         "theme": "darkly",
         "path": "vendor/bootstrap/dist"

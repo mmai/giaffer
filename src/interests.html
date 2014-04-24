@@ -1,0 +1,93 @@
+<!doctype html>
+<html ng-csp ng-app="ngGiaffer.interests" ng-controller="InterestsCtrl">
+    <head>
+        <link href="assets/main.css" rel="stylesheet">
+        <link href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet">
+
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-florm/lib/angular-florm.js"></script>
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/lodash/dist/lodash.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<script src="app/conf.js"></script>
+<script src="app/lib/Giaffer.js"></script>
+<script src="common/services/interestService.js"></script>
+<script src="common/services/settingsService.js"></script>
+
+        <script src="app/interests/chrome-interests.js"></script>
+        <style>
+.ng-hide {
+    display:none;
+}
+
+.interests {
+    form {
+        width:500px;
+        margin-bottom:20px;
+    }
+}
+        </style>
+    </head>
+    <body><section class="interests" ng-controller="InterestsCtrl">
+    <div class="row-fluid">
+        <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
+            <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;&nbsp;
+            <a ng-click="undoDeleteInterest()">Undo</a>
+        </alert>
+    <p>
+    Establish your list of interesting topics. For each topic, set its name and its associated search request.
+    <br>No account creation is needed, all data is saved in your browser and will be available the next time you visit this page. 
+    </p><br>
+        <form ng-submit="addInterest();" class="form-horizontal">
+            <div class="input-group">
+                <label class="sr-only" for="newinerest">New interest</label>
+                <input type="text" class="form-control" id="newinterest" ng-model="newinterest.name" placeholder="New interest">
+                <span class="input-group-btn">
+                    <input type="submit" class="btn btn-default" id="btnSaveNewInterest" value="Add">
+                </span>
+            </div><!-- /input-group -->
+        </form>
+        <table class="table table-bordered table-condensed table-hover">
+            <tr ng-show="interests.length > 0">
+                <th>Name</th>
+                <th>Search request *</th>
+                <th style="width: 100px;"></th>
+            </tr>
+            <tr ng-repeat="interest in interests | orderBy:'name':false">
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.name}}</span>
+                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.name" ng-enter="updateInterest(interest)" ng-esc="cancelEditInterest(interest)">
+                    </td>
+                    <td>
+                        <span ng-show="interest.editMode == null || interest.editMode == false">{{interest.searchString}}</span>
+                        <input ng-show="interest.editMode === true" type="text" class="form-control" ng-model="interest.searchString" ng-enter="updateInterest(interest)" ng-esc="cancelEditInterest(interest)">
+                    </td>
+                    <td>
+                        <div class="btn-toolbar" ng-show="interest.editMode == null || interest.editMode == false">
+                            <div class="btn-group">
+                                <i class="btn glyphicon glyphicon-pencil" ng-click="toggleEditMode(interest)"></i>
+                                <i class="btn glyphicon glyphicon-trash" ng-click="deleteInterest(interest)"></i>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar" ng-show="interest.editMode == true">
+                            <div class="btn-group">
+                                <i class="btn glyphicon glyphicon-save" ng-click="updateInterest(interest)"></i>
+                                <i class="btn glyphicon glyphicon-remove" ng-click="cancelEditInterest(interest)"></i>
+                            </div>
+                        </div>
+                    </td>
+            </tr>
+        </table>
+
+        <p> <strong>*</strong> The search request should follow the same syntax as the one used by the search engine :<ul>
+            <li>Delimit phrases with double quotes</li>
+            <li>With Google and Bing, you can use the pipe symbol "|" to separate alternative versions of a same search term</li>
+            </ul>
+         </p>
+
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Giaffer",
+    "description": "Thename of the application"
+  },
+  "appDescription": {
+    "message": "A guided serendipity tool : combine your interests in  a search request",
+    "description": "The description of the application"
+  }
+}

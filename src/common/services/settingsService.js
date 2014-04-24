@@ -17,8 +17,10 @@ angular.module('ngGiaffer.settingsServiceModule', ['ngFlorm'])
             //due to angular inability to inject services in configuration blocs)
             if (Settings === null){
                 Settings = $florm('settings');
-                var defaultSettings = Settings.new(defaults);
-                defaultSettings.save();
+                if (Settings.all().length === 0){
+                    var defaultSettings = Settings.new(defaults);
+                    defaultSettings.save();
+                }
             }
 
             var self = this;
