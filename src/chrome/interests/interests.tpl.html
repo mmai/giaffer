@@ -1,36 +1,4 @@
-<!doctype html>
-<html ng-csp ng-app="ngGiaffer.interests" ng-controller="InterestsCtrl">
-    <head>
-        <link href="assets/main.css" rel="stylesheet">
-        <link href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet">
-
-<script src="vendor/angular/angular.js"></script>
-<script src="vendor/angular-florm/lib/angular-florm.js"></script>
-<script src="vendor/jquery/dist/jquery.js"></script>
-<script src="vendor/lodash/dist/lodash.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
-<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-
-<script src="app/conf.js"></script>
-<script src="app/lib/Giaffer.js"></script>
-<script src="common/services/interestService.js"></script>
-<script src="common/services/settingsService.js"></script>
-
-        <script src="app/interests/chrome-interests.js"></script>
-        <style>
-.ng-hide {
-    display:none;
-}
-
-.interests {
-    form {
-        width:500px;
-        margin-bottom:20px;
-    }
-}
-        </style>
-    </head>
-    <body><section class="interests" ng-controller="InterestsCtrl">
+<section class="interests" ng-controller="InterestsCtrl">
     <div class="row-fluid">
         <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
             <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;&nbsp;
@@ -89,5 +57,3 @@
 
     </div>
 </section>
-</body>
-</html>

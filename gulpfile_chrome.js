@@ -3,7 +3,7 @@
 var gulp    = require('gulp'),
     plugins = require('gulp-load-plugins')(),
     server  = require('tiny-lr')(),
-    config  = require('./gulp_config.json');
+    config  = require('./gulp_config_chrome.json');
 
 
 
@@ -22,7 +22,7 @@ var fnSass = function (path) {
         .pipe(gulp.dest(config.build + '/assets'));
 };
 gulp.task('styles:sass', function () {
-    var files = [config.app + '/sass/main.scss', config.app + '/common/**/*.scss', config.app + '/app/**/*.scss'];
+    var files = [config.app + '/sass/main.scss', config.app + '/common/**/*.scss', config.app + '/' + config.platform +'/**/*.scss'];
     return fnSass(files);
 });
 
@@ -96,7 +96,7 @@ var fnHtml2Js = function (path) {
             moduleName: 'templates'
         }))
         .pipe(plugins.concat('app-templates.js'))
-        .pipe(gulp.dest(config.build + '/app'));
+        .pipe(gulp.dest(config.build + '/' + config.platform));
 };
 gulp.task('scripts:html2js', function () {
     return fnHtml2Js(config.paths.templates);
@@ -169,10 +169,10 @@ gulp.task('bootswatch:dist', function () {
 // ============
 
 // Inject CSS & JS to index.html source
-var fnInject = function (path, platform) {
+var fnInject = function (path) {
     var inject = {
         css : (config.vendor_files.css).concat(config.build + '/assets/*.css'),
-        js  : (config.vendor_files.js).concat(config.build + '/+(app|lib|common)/**/*.js')
+        js  : (config.vendor_files.js).concat(config.build + '/+('+config.platform+'|lib|common)/**/*.js')
     };
 
     return gulp.src(inject.css.concat(inject.js), { read: false })
@@ -198,7 +198,7 @@ gulp.task('html:replace', ['html:inject'], function () {
 
 // Compile and minify HTML
 gulp.task('html', ['html:replace'], function () {
-    return gulp.src(config.dist + '/index.html')
+    return gulp.src(config.dist + '/options.html')
         .pipe(plugins.plumber())
         .pipe(plugins.minifyHtml({ quotes: true }))
         .pipe(gulp.dest(config.dist));
@@ -218,7 +218,7 @@ var testFiles = [
     config.build + '/vendor/**/*.js',
     'vendor/angular-mocks/angular-mocks.js',
     //app components
-    config.build + '/+(app|lib|common)/**/*.js',
+    config.build + '/+(chrome|lib|common)/**/*.js',
     //Specs
     config.paths.tests,
 //    config.test + '/integration/**/*.spec.js',//Integration tests => à faire dans protractor ?
@@ -285,14 +285,14 @@ gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:im
     });
 
     // remove deleted JS files from index.html
-    gulp.watch(config.build + '/+(app|lib|common)/**/*.js', function (event) {
+    gulp.watch(config.build + '/+('+ config.platform +'|lib|common)/**/*.js', function (event) {
         if (event.type !== 'changed') {
             return fnInject(config.paths.html).pipe(plugins.livereload(server));
         }
     });
 
     // watch AngularJS templates to cache
-    gulp.watch(config.app + '/+(app|common)/**', function (event) {
+    gulp.watch(config.app + '/+('+ config.platform +'|common)/**', function (event) {
         if (event.path.lastIndexOf('.tpl.html') === event.path.length - 9) {
             return fnHtml2Js(config.paths.templates).pipe(plugins.livereload(server));
         }
@@ -303,7 +303,7 @@ gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:im
         if (event.path.lastIndexOf('.scss') === event.path.length - 5) {
             var files = [
                 config.app + '/sass/main.scss',
-                config.app + '/+(app|common)/**/*.scss'
+                config.app + '/+('+ config.platform +'|common)/**/*.scss'
             ];
             return fnSass(files).pipe(plugins.livereload(server));
         }
@@ -325,6 +325,12 @@ gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:im
 
 });
 
+gulp.task('chrome:copy', function(){
+    return gulp.src(config.chrome_files, { base: 'src' })
+        .pipe(gulp.dest(config.build));
+});
+
+
 // Clean up development & production directories
 // =============================================
 
@@ -339,7 +345,7 @@ gulp.task('clean', function () {
 // ===============
 
 gulp.task('build', ['clean'], function () {
-    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject');
+    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject', 'chrome:copy');
 });
 
 gulp.task('compile', ['build'], function () {

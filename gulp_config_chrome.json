@@ -1,22 +1,23 @@
 {
+    "platform": "chrome",
     "app"   : "src",
-    "build" : "build",
-    "dist"  : "www",
+    "build" : "build_chrome",
+    "dist"  : "dist_chrome",
     "test"  : "test",
 
     "paths" : {
         "scripts"   : [
-            "src/+(app|common)/**/*.js",
-            "!src/+(app|common)/**/*.spec.js"
+            "src/+(chrome|lib|common)/**/*.js",
+            "!src/+(chrome|lib|common)/**/*.spec.js"
         ],
         "templates" : [
-            "src/app/**/*.tpl.html",
+            "src/chrome/**/*.tpl.html",
             "src/common/**/*.tpl.html"
         ],
-        "sass"   : "src/+(sass|app|common)/**/*",
+        "sass"   : "src/+(sass|chrome|common)/**/*",
         "assets" : "src/assets/**",
-        "html"   : "src/index.html",
-        "tests"  : "src/+(app|common)/**/*.spec.js"
+        "html"   : "src/options.html",
+        "tests"  : "src/+(chrome|common)/**/*.spec.js"
     },
 
     "vendor_files" : {
@@ -39,7 +40,6 @@
         "src/manifest.json",
         "src/popup.html",
         "src/options.html",
-        "src/interests.html",
         "src/images/*",
         "src/_locales/**/*"
     ],

@@ -1,0 +1,43 @@
+{
+    "platform": "app",
+    "app"   : "src",
+    "build" : "build",
+    "dist"  : "www",
+    "test"  : "test",
+
+    "paths" : {
+        "scripts"   : [
+            "src/+(app|lib|common)/**/*.js",
+            "!src/+(app|common)/**/*.spec.js"
+        ],
+        "templates" : [
+            "src/app/**/*.tpl.html",
+            "src/common/**/*.tpl.html"
+        ],
+        "sass"   : "src/+(sass|app|common)/**/*",
+        "assets" : "src/assets/**",
+        "html"   : "src/index.html",
+        "tests"  : "src/+(app|common)/**/*.spec.js"
+    },
+
+    "vendor_files" : {
+        "js": [
+            "vendor/angular/angular.js",
+            "vendor/jquery/dist/jquery.js",
+            "vendor/angular-ui-router/release/angular-ui-router.js",
+            "vendor/angular-florm/lib/angular-florm.js",
+            "vendor/lodash/dist/lodash.js",
+            "vendor/bootstrap/dist/js/bootstrap.js",
+            "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
+        ],
+        "css": [
+        ],
+        "assets": [
+        ]
+    },
+
+    "bootstrap": {
+        "theme": "darkly",
+        "path": "vendor/bootstrap/dist"
+    }
+}

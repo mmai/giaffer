@@ -1,15 +1,29 @@
 'use strict';
 
-angular.module('ngGiaffer.options', [
-        'ngGiaffer.conf',
-        'ngGiaffer.settingsServiceModule'
-    ])
+angular.module('ngGiaffer.settings', [
+    'ui.router',
+    'ui.bootstrap'
+])
 
-.config(['$settingsProvider', 'defaults', function ($settingsProvider, defaults) {
-            $settingsProvider.setDefaults(defaults.settings);
+//*
+.config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state('settings', {
+        url: '/settings/',
+        views: {
+            "main": {
+                templateUrl: 'settings/settings.tpl.html',
+                controller: 'SettingsCtrl'
+            }
+        },
+        data: {
+            pageTitle: 'Settings',
+            pagename: 'settings'
+        }
+    });
 }])
+//*/
 
-.controller('OptionsCtrl', ['$scope','$rootScope', '$settings', function SettingsCtrl($scope, $rootScope, $settings){
+.controller('SettingsCtrl', ['$scope','$rootScope', '$settings', function SettingsCtrl($scope, $rootScope, $settings){
             $scope.searchEngines = Object.getOwnPropertyNames(window.searchEngines);
             $scope.searchEngine = $settings.get('searchEngine');
             $scope.updateSearchEngine = function(searchEngine){

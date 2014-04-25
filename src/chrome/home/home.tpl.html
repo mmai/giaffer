@@ -1,0 +1,29 @@
+<section class="home">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 id='tagline'><small>Discover new web pages by searching random combinations of your interests</small></h2>
+        </div>
+        <div class="col-md-6">
+<!--             <alert ng-show="$root.firstVisit">You have not configured your own interests yet. <a ui-sref='interests'>Click here to manage them</a></alert> -->
+        </div>
+    </div>
+
+        <div class="jumbotron">
+            <p>What about searching for <span class="hidden-xs">something related to</span><br> 
+        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
+        </p>
+<!--         <div class="panel panel-default"> -->
+<!--             <div class="panel-body"> -->
+<!--                 {{search.display}} -->
+<!--             </div> -->
+<!--         </div> -->
+        <p>
+        <a class="btn btn-default btn-lg" ng-click='newterms()'>
+            <span class="glyphicon glyphicon-refresh"></span> Pick others
+        </a> 
+        <a id='search' class="btn btn-primary btn-lg" role="button" href="{{search.url}}" target="_blank">
+                <span class="glyphicon glyphicon-search"></span> Let's search that !
+            </a>
+        </p>
+        </div>
+</section>
