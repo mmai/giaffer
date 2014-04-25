@@ -33,6 +33,7 @@ nav, .alert {
 }
 
 // bootswatch theme overrides
+
 .btn {
     padding: 8px 12px;
 }
@@ -46,6 +47,29 @@ nav, .alert {
 .glyphicon {
   font-family: 'Glyphicons Halflings' !important;
 }
+
+// Chrome extension customizations
+.chromerow {
+    margin-left: 0px; 
+    margin-right: 0px; 
+    section {
+        h2, h3 {
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #999;
+        }
+    }
+    .row {
+        margin-left: 0px; 
+        margin-right: 0px; 
+    }
+
+    .content {
+        max-width: 750px;
+    }
+}
+
 
 //.navbar-default {
 //    background-color: transparent;

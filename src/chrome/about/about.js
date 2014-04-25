@@ -10,7 +10,7 @@ angular.module('ngGiaffer.about', [
         views: {
             "main": {
                 controller: 'AboutCtrl',
-                templateUrl: 'about/aboutMin.tpl.html'
+                templateUrl: 'about/about.tpl.html'
             }
         },
         data: {

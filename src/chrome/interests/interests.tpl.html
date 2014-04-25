@@ -1,12 +1,13 @@
 <section class="interests" ng-controller="InterestsCtrl">
     <div class="row-fluid">
+        <h3>Interests</h3>
         <alert type="warning" ng-show="deletedInterest !== null" close="closeUndoDelete()">
             <strong>{{deletedInterest.name}}</strong> has been deleted.&nbsp;&nbsp;
             <a ng-click="undoDeleteInterest()">Undo</a>
         </alert>
-    <p>
+    <br>
+<p>
     Establish your list of interesting topics. For each topic, set its name and its associated search request.
-    <br>No account creation is needed, all data is saved in your browser and will be available the next time you visit this page. 
     </p><br>
         <form ng-submit="addInterest();" class="form-horizontal">
             <div class="input-group">

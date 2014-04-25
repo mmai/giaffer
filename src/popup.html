@@ -2,7 +2,7 @@
 <html ng-csp ng-app="ngGiaffer.popup" ng-controller="PopupCtrl">
     <head>
         <link href="assets/main.css" rel="stylesheet">
-        <link href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet">
+        <link ng-href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet" />
 
 <script src="vendor/angular/angular.js"></script>
 <script src="vendor/angular-florm/lib/angular-florm.js"></script>
@@ -16,14 +16,20 @@
 <script src="common/services/interestService.js"></script>
 <script src="common/services/settingsService.js"></script>
 
-        <script src="chrome/popup/popup.js"></script>
-        <style>
+<script src="chrome/popup/popup.js"></script>
+<style>
+
+body {
+    width: 500px;
+    height: 400px;
+}
+
 .ng-hide {
     display:none;
 }
 
-    .jumbotron {
-        margin-top: 60px;
+.jumbotron {
+        margin-top: 30px;
         text-align: center;
         .btn {
             margin-top: 10px;
@@ -35,14 +41,22 @@
         font-weight:bold;
         font-style:italic;
     }
-
-
-        </style>
-    </head>
-    <body>
-    <a href="interests.html">Manage interestService</a>
-                <div class="jumbotron">
-            <p>What about searching for <br> 
+</style>
+</head>
+<body>
+<div class="row">
+        <div class="col-xs-6">
+    <h1>Giaffer</h1>
+    </div>
+        <div class="col-xs-6">
+            <br><br>
+    <a class="btn btn-sm btn-default" href="options.html#/interests/" target="_blank">
+      <span class="glyphicon glyphicon-pencil"></span> Manage your interests
+    </a>
+    </div>
+    </div>
+  <div class="jumbotron">
+      <p>What about searching for <br> 
         <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
         </p>
         <p>
