@@ -26,18 +26,6 @@ gulp.task('styles:sass', function () {
     return fnSass(files);
 });
 
-// Minify CSS
-gulp.task('styles', ['styles:sass'], function () {
-    return gulp.src(config.build + '/assets/*.css')
-        .pipe(plugins.bytediff.start())
-        .pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
-        .pipe(plugins.rename({ suffix: '.min' }))
-        .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dist + '/assets'));
-});
-
-
-
 // Prepare vendor files
 // ====================
 
@@ -114,25 +102,6 @@ gulp.task('scripts:lint', function () {
     return fnLint(config.paths.scripts);
 });
 
-// Concat and minify JavaScript
-gulp.task('scripts', ['scripts:lint', 'scripts:html2js', 'vendor:js'], function () {
-        var arr = (config.vendor_files.js).concat(config.paths.scripts).concat(config.build + '/app/app-templates.js');
-    return gulp.src(arr)
-        .pipe(plugins.concat('main.js'))
-        .pipe(plugins.bytediff.start())
-        .pipe(plugins.ngmin())
-        .pipe(plugins.rename({ suffix: '.min' }))
-        .pipe(plugins.removelogs())
-        .pipe(plugins.uglify({
-                    mangle:false,//'true' generate a erroneous minified js
-//                    outSourceMap:true,
-                }))
-        .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dist + '/assets'));
-});
-
-
-
 // Prepare assets
 // ==============
 
@@ -144,26 +113,6 @@ var fnImg = function (path) {
 gulp.task('assets:img', function () {
     return fnImg(config.paths.assets);
 });
-
-// Compress images
-gulp.task('assets', ['assets:img', 'vendor:assets'], function () {
-    var arr = (config.vendor_files.assets).concat(config.paths.assets);
-    return gulp.src(arr)
-        .pipe(plugins.plumber())
-        // .pipe(plugins.bytediff.start())
-        .pipe(plugins.newer(config.dist + '/assets'))
-        // .pipe(plugins.imagemin({ optimizationLevel: 5, progressive: true }))
-        // .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dist + '/assets'));
-});
-
-
-// Copy bootstwatch themes files to dist
-gulp.task('bootswatch:dist', function () {
-    return gulp.src(config.build + '/' + config.bootstrap.path + '/**/*', { base: config.build })
-    .pipe(gulp.dest(config.dist));
-});
-
 
 // Prepare HTML
 // ============
@@ -195,15 +144,6 @@ gulp.task('html:replace', ['html:inject'], function () {
         }))
         .pipe(gulp.dest(config.dist));
 });
-
-// Compile and minify HTML
-gulp.task('html', ['html:replace'], function () {
-    return gulp.src(config.dist + '/options.html')
-        .pipe(plugins.plumber())
-        .pipe(plugins.minifyHtml({ quotes: true }))
-        .pipe(gulp.dest(config.dist));
-});
-
 
 // Testing
 // ============
@@ -348,11 +288,10 @@ gulp.task('build', ['clean'], function () {
     gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject', 'chrome:copy');
 });
 
-gulp.task('compile', ['build'], function () {
-    gulp.start('styles', 'scripts', 'assets', 'html');
+gulp.task('makedist', function(){
+
 });
 
-gulp.task('default', ['compile'], function () {
-        //XXX does not work : must be manually started after the 'compile' task
-    gulp.start('bootswatch:dist');
+gulp.task('default', ['build'], function () {
+        gulp.start('makedist');
 });

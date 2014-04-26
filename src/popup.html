@@ -1,8 +1,7 @@
 <!doctype html>
 <html ng-csp ng-app="ngGiaffer.popup" ng-controller="PopupCtrl">
-    <head>
-        <link href="assets/main.css" rel="stylesheet">
-        <link ng-href="vendor/bootstrap/dist/css/bootstrap-readable.css" rel="stylesheet" />
+<head>
+<link ng-href="vendor/bootstrap/dist/css/bootstrap-{{csstheme}}.css" rel="stylesheet" />
 
 <script src="vendor/angular/angular.js"></script>
 <script src="vendor/angular-florm/lib/angular-florm.js"></script>
@@ -21,52 +20,76 @@
 
 body {
     width: 500px;
-    height: 400px;
+    height: 300px;
 }
 
 .ng-hide {
     display:none;
 }
 
-.jumbotron {
-        margin-top: 30px;
-        text-align: center;
-        .btn {
-            margin-top: 10px;
-        }
-    }
+section {
+    margin: 30px 30px 10px 30px;
+    text-align: center;
+}
 
-    .interest {
-        font-size: 110%;
-        font-weight:bold;
-        font-style:italic;
-    }
+.results {
+    margin: 25px 10px 25px;
+    font-size: 1.2em; 
+}
+
+.interest {
+    font-size: 115%;
+    font-weight:bold;
+    font-style:italic;
+}
+
+header {
+    padding: 1px 40px 1px 1px;
+    text-align: center;
+}
+
+.logo {
+/*    float: left;
+    margin: 15px 15px 0 30px;
+    */
+}
+
+footer {
+    padding: 10px;
+}
 </style>
 </head>
 <body>
-<div class="row">
-        <div class="col-xs-6">
-    <h1>Giaffer</h1>
+
+<header class="navbar-default">
+    <h2>
+        <img class="logo" src="images/icon-38.png">
+        Giaffer
+    </h2>
+    <div style="clear:both;"></div>
+</header>
+
+<section>
+    <div ng-show="firstVisit" class="alert alert-warning">
+        You have not configured your own interests yet.<br><a href="options.html#/interests/" target="_blank">Click here to manage them</a>
     </div>
-        <div class="col-xs-6">
-            <br><br>
-    <a class="btn btn-sm btn-default" href="options.html#/interests/" target="_blank">
-      <span class="glyphicon glyphicon-pencil"></span> Manage your interests
+    <p class="results">What about searching for <br> 
+    <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
+    </p>
+    <p>
+    <a class="btn btn-default btn-md" ng-click='newterms()'>
+        <span class="glyphicon glyphicon-refresh"></span> Pick others
+    </a> 
+    <a id='search' class="btn btn-primary btn-md" role="button" href="{{search.url}}" target="_blank">
+        <span class="glyphicon glyphicon-search"></span> Let's search that !
     </a>
+    </p>
+</section>
+
+<footer>
+    <div align="right" ng-show="!firstVisit">
+        <a href="options.html#/interests/" target="_blank">Manage interests</a>
     </div>
-    </div>
-  <div class="jumbotron">
-      <p>What about searching for <br> 
-        <span ng-repeat="theme in search.themes"> <span ng-show='!$last && !$first'>,</span><span ng-show='$last'>&nbsp;and</span> <span class="interest">{{theme.name}}</span> </span> ?
-        </p>
-        <p>
-        <a class="btn btn-default btn-lg" ng-click='newterms()'>
-            <span class="glyphicon glyphicon-refresh"></span> Pick others
-        </a> 
-        <a id='search' class="btn btn-primary btn-lg" role="button" href="{{search.url}}" target="_blank">
-                <span class="glyphicon glyphicon-search"></span> Let's search that !
-            </a>
-        </p>
-        </div>
-    </body>
+</footer>
+</body>
 </html>

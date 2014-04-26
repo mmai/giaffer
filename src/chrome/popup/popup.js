@@ -18,14 +18,23 @@ angular.module('ngGiaffer.popup', [
         '$settings',
         function($scope, $rootScope, $interests, $settings){
 
+            $scope.firstVisit = $interests.isDefaults();
+            $scope.nbInterests = $interests.all().length;
+
+            $scope.$on('settings:set', function(event, data){
+                    if (data.name === 'csstheme'){
+                        $scope.csstheme = $settings.get('csstheme');
+                    }
+                });
+
+            $scope.csstheme = $settings.get('csstheme');
+
             var giafferOptions = {
                 searchEngine: $settings.get('searchEngine'),
                 nbTerms: $settings.get('nbTerms')
             };
 
             var Giaffer = new window.Giaffer(giafferOptions, $interests.all());
-
-            $scope.nbInterests = $interests.all().length;
 
             $scope.newterms = function (){
                 $scope.search = Giaffer.search();
