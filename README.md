@@ -15,8 +15,6 @@ Try it on http://mmai.github.io/giaffer or [install the chrome extension](https:
 ```sh
 $ npm install
 $ bower install
-$ gulp compile
-$ gulp bootswatch:dist
 ```
 
 ## Web app compilation
