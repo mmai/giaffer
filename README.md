@@ -1,14 +1,14 @@
 # Giaffer
 
-#### Discover new web pages by searching random combinations of your interests
+#### A guided serendipity tool : combine your interests in a search request
 
 ## About
 
-In the fairy tale [The Three Princes of Serendip](https://en.wikipedia.org/wiki/The_Three_Princes_of_Serendip), the king Giaffer sends his three sons explore the world, hoping they gain wisdom. Inspired by this story, Horace Walpole coined the concept of serendipity
+Giaffer facilitate the discovery of new Web pages by combining search terms related to subjects randomly selected from a list of your favorite interests.
 
-Giaffer is a web implementation of Integrate your Interests, a hack by [Ron Hale Evans](http://ludism.org/tinfoil) from his book Mindhacker.
+It is a web implementation of Integrate your Interests, a hack by [Ron Hale Evans](http://ludism.org/tinfoil) from his book Mindhacker.
 
-Try it on http://mmai.github.io/giaffer
+Try it on http://mmai.github.io/giaffer or [install the chrome extension](https://chrome.google.com/webstore/detail/giaffer/noodloalemeghdoiolcopooienadaocb)
 
 ## Installation
 
@@ -17,4 +17,17 @@ $ npm install
 $ bower install
 $ gulp compile
 $ gulp bootswatch:dist
+```
+
+## Web app compilation
+
+```sh
+$ gulp compile
+$ gulp bootswatch:dist
+```
+
+## Chrome extension build
+
+```sh
+$ gulp --gulpfile gulpfile_chrome.js build
 ```
