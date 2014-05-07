@@ -265,8 +265,8 @@ gulp.task('watch', ['styles:sass', 'scripts:lint', 'scripts:html2js', 'assets:im
 
 });
 
-gulp.task('chrome:copy', function(){
-    return gulp.src(config.chrome_files, { base: 'src' })
+gulp.task('copy', function(){
+    return gulp.src(config.copy_files, { base: 'src' })
         .pipe(gulp.dest(config.build));
 });
 
@@ -285,7 +285,7 @@ gulp.task('clean', function () {
 // ===============
 
 gulp.task('build', ['clean'], function () {
-    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject', 'chrome:copy');
+    gulp.start('styles:sass', 'scripts:lint', 'scripts:html2js', 'vendor:js', 'vendor:assets', 'assets:img', 'html:inject', 'copy');
 });
 
 gulp.task('makedist', function(){

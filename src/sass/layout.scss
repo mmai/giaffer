@@ -16,6 +16,11 @@ html, body {
 
     footer {
         height: $footer_height;
+        .chrome-extension {
+//            display: inline-block;
+            float: right;
+            font-weight: bold;
+        } 
     }
 }
 

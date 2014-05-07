@@ -36,6 +36,10 @@
         ]
     },
 
+    "copy_files": [
+        "src/images/chrome-icon-24.png"
+        ],
+
     "bootstrap": {
         "theme": "darkly",
         "path": "vendor/bootstrap/dist"

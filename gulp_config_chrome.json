@@ -36,7 +36,7 @@
         ]
     },
 
-    "chrome_files": [
+    "copy_files": [
         "src/manifest.json",
         "src/popup.html",
         "src/options.html",
