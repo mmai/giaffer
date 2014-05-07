@@ -93,6 +93,9 @@ angular.module('ngGiaffer', [
 
             $scope.csstheme = $settings.get('csstheme');
 
+            //Display the link to the chrome extension only on chrome browsers
+            $scope.displayChrome = navigator.userAgent.indexOf('Chrome') > 0;
+
             $rootScope.checkFirstVisit();
             angular.element(document).ready(function () {
                     $scope.loaded = true;
