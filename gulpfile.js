@@ -330,6 +330,11 @@ gulp.task('copy', function(){
         .pipe(gulp.dest(config.build));
 });
 
+gulp.task('copy:dist', function(){
+    return gulp.src(config.copy_files, { base: 'src' })
+        .pipe(gulp.dest(config.dist));
+});
+
 // Clean up development & production directories
 // =============================================
 
@@ -337,7 +342,6 @@ gulp.task('clean', function () {
     return gulp.src([config.build, config.dist], { read: false })
         .pipe(plugins.rimraf());
 });
-
 
 
 // Main gulp tasks
@@ -349,6 +353,7 @@ gulp.task('build', ['clean'], function () {
 
 gulp.task('compile', ['build'], function () {
     gulp.start('styles', 'scripts', 'assets', 'html');
+    gulp.start('copy:dist');
 });
 
 gulp.task('default', ['compile'], function () {
