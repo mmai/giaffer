@@ -14,18 +14,18 @@ Try it on http://mmai.github.io/giaffer or [install the chrome extension](https:
 
 ```sh
 $ npm install
-$ bower install
+$ ./node_modules/bower/bin/bower install
 ```
 
 ## Web app compilation
 
 ```sh
-$ gulp compile
-$ gulp bootswatch:dist
+$ ./node_modules/gulp/bin/gulp.js compile
+$ ./node_modules/gulp/bin/gulp.js bootswatch:dist
 ```
 
 ## Chrome extension build
 
 ```sh
-$ gulp --gulpfile gulpfile_chrome.js build
+$ ./node_modules/gulp/bin/gulp.js --gulpfile gulpfile_chrome.js build
 ```
